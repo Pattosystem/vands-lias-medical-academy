@@ -1,0 +1,2791 @@
+<!DOCTYPE html>
+<html lang="ja" data-lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vands × LIAS Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+JP:wght@500;700&family=Noto+Serif+KR:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --font-sans: 'Noto Sans JP', sans-serif;
+    --font-serif: 'Noto Serif JP', serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --ink: #0E2540;
+    --ink-light: #3A4D6B;
+    --ink-soft: #6B7A94;
+    --paper: #FAFAF7;
+    --paper-dark: #F2F0E9;
+    --border: #E5E3DA;
+    --teal: #0E9488;
+    --teal-dark: #0B766E;
+    --teal-light: #E6F5F3;
+    --gold: #C99B2F;
+    --gold-dark: #A97F22;
+    --gold-light: #FAF2DD;
+  }
+  html[data-lang="ko"] {
+    --font-sans: 'Noto Sans KR', sans-serif;
+    --font-serif: 'Noto Serif KR', serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-sans);
+    font-feature-settings: "palt";
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+  .font-serif { font-family: var(--font-serif); }
+  .font-mono  { font-family: var(--font-mono); }
+
+  /* Language complete separation */
+  html[data-lang="ja"] [data-lang-only="ko"] { display: none !important; }
+  html[data-lang="ko"] [data-lang-only="ja"] { display: none !important; }
+
+  /* ============ HEADER ============ */
+  .header {
+    position: sticky;
+    top: 0;
+    background: rgba(250, 250, 247, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 50;
+  }
+  .header-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 16px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .brand {
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .brand-x { color: var(--teal); margin: 0 6px; font-weight: 300; }
+  .brand-sub {
+    font-size: 11px;
+    color: var(--ink-soft);
+    padding-left: 14px;
+    margin-left: 14px;
+    border-left: 1px solid var(--border);
+  }
+  .header-actions { display: flex; align-items: center; gap: 12px; }
+  .back-link {
+    font-size: 12px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding: 7px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: white;
+    transition: all 0.15s;
+  }
+  .back-link:hover {
+    border-color: var(--teal);
+    color: var(--teal-dark);
+  }
+  .lang-toggle {
+    display: inline-flex;
+    background: var(--paper-dark);
+    border-radius: 999px;
+    padding: 3px;
+    border: 1px solid var(--border);
+  }
+  .lang-btn {
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+  }
+  .lang-btn.active {
+    background: var(--ink);
+    color: white;
+  }
+
+  /* ============ LAYOUT ============ */
+  .layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* ============ SIDEBAR NAV ============ */
+  .sidebar {
+    position: sticky;
+    top: 61px;
+    height: calc(100vh - 61px);
+    padding: 40px 0 40px 32px;
+    overflow-y: auto;
+  }
+  .sidebar-title {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 20px;
+  }
+  .nav-section-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    border-left: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-decoration: none;
+  }
+  .nav-section-link:hover {
+    color: var(--ink);
+  }
+  .nav-section-link.active {
+    color: var(--teal-dark);
+    border-left-color: var(--teal);
+    font-weight: 600;
+    background: var(--teal-light);
+  }
+  .nav-num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--ink-soft);
+    letter-spacing: 0.1em;
+    min-width: 20px;
+  }
+  .nav-section-link.active .nav-num {
+    color: var(--teal);
+  }
+
+  /* ============ MAIN CONTENT ============ */
+  .main {
+    padding: 60px 60px 120px;
+    max-width: 880px;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 100px;
+    scroll-margin-top: 80px;
+  }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--teal);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+  .section-lead {
+    font-size: 16px;
+    color: var(--ink-light);
+    line-height: 2;
+    margin-bottom: 40px;
+  }
+
+  /* Section divider */
+  .section-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 60px 0;
+  }
+
+  /* ============ 01. FLOW DIAGRAM ============ */
+  .flow-diagram {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 40px;
+    margin-bottom: 28px;
+  }
+  .flow-steps {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 20px;
+    align-items: stretch;
+  }
+  .flow-box {
+    background: var(--paper);
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 20px;
+    text-align: center;
+    position: relative;
+  }
+  .flow-box.step1 { border-color: var(--teal); background: var(--teal-light); }
+  .flow-box.step2 { border-color: var(--gold); background: var(--gold-light); }
+  .flow-box.vjdn  { border-color: var(--ink); background: var(--ink); color: white; }
+  .flow-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    margin-bottom: 8px;
+    opacity: 0.8;
+  }
+  .flow-title {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .flow-desc {
+    font-size: 12px;
+    opacity: 0.9;
+    line-height: 1.5;
+  }
+  .flow-arrow {
+    font-size: 24px;
+    color: var(--ink-soft);
+    align-self: center;
+    font-weight: 300;
+  }
+
+  /* ============ 02. COURSE CARDS ============ */
+  .category-group {
+    margin-bottom: 40px;
+  }
+  .category-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .category-bar {
+    width: 3px;
+    height: 18px;
+    display: inline-block;
+    border-radius: 2px;
+  }
+  .cat-ha     { background: var(--teal); }
+  .cat-btx    { background: #3B82F6; }
+  .cat-fat    { background: #16A34A; }
+  .cat-inj    { background: #7C3AED; }
+  .cat-thread { background: var(--gold); }
+  .cat-orig   { background: #991B1B; }
+  .category-name {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .category-count {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-left: auto;
+  }
+  .course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+  }
+  .course-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    transition: all 0.2s;
+  }
+  .course-card:hover {
+    border-color: var(--teal);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(14, 37, 64, 0.08);
+  }
+  .course-card-name {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  .course-stars {
+    color: var(--gold);
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .stars-empty { color: var(--border); }
+  .course-prices {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .course-price-item {
+    flex: 1;
+    padding: 8px 10px;
+    border-radius: 6px;
+    background: var(--paper);
+    text-align: center;
+  }
+  .course-price-item.step1 { background: var(--teal-light); }
+  .course-price-item.step2 { background: var(--gold-light); }
+  .price-label {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 3px;
+  }
+  .course-price-item.step1 .price-label { color: var(--teal-dark); }
+  .course-price-item.step2 .price-label { color: var(--gold-dark); }
+  .price-value {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .price-value.dash { color: var(--ink-soft); font-weight: 400; }
+  .vjdn-badge {
+    display: inline-block;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+  .vjdn-required { background: #FEE2E2; color: #B91C1C; }
+  .vjdn-step2    { background: var(--gold-light); color: var(--gold-dark); }
+
+  /* ============ 03. SCORING EXPLANATION ============ */
+  .scoring-intro {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 30px;
+  }
+  .axes-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .axis-card {
+    padding: 16px 12px;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-align: center;
+  }
+  .axis-num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--teal);
+    letter-spacing: 0.15em;
+    margin-bottom: 6px;
+  }
+  .axis-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .axis-max {
+    font-size: 10px;
+    color: var(--ink-soft);
+  }
+
+  .scoring-example {
+    background: var(--paper);
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    margin-top: 20px;
+  }
+  .example-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--teal);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .example-row {
+    display: grid;
+    grid-template-columns: 2fr repeat(5, 1fr) 1fr 1fr;
+    gap: 8px;
+    align-items: center;
+    padding: 8px 0;
+    font-size: 13px;
+    border-bottom: 1px solid var(--border);
+  }
+  .example-row:last-child { border-bottom: none; }
+  .example-row.header {
+    font-size: 11px;
+    color: var(--ink-soft);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .example-cell {
+    text-align: center;
+    font-family: var(--font-mono);
+  }
+  .example-cell.total { font-weight: 700; color: var(--gold-dark); }
+  .example-cell.name { text-align: left; font-family: var(--font-sans); }
+
+  /* ============ 04. PRICING TABLE ============ */
+  .pricing-table-wrap {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .pricing-table th, .pricing-table td {
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .pricing-table th {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    font-weight: 700;
+    text-transform: uppercase;
+    background: var(--paper);
+  }
+  .pricing-table tr:last-child td { border-bottom: none; }
+  .pricing-table td.num { font-family: var(--font-mono); text-align: right; }
+  .pricing-table td.center { text-align: center; }
+  .th-step1 { background: var(--teal-light) !important; }
+  .th-step2 { background: var(--gold-light) !important; }
+
+  .pricing-notes {
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.8;
+  }
+  .pricing-notes > div { margin-bottom: 4px; }
+
+  /* ============ 05. REVENUE SIMULATOR ============ */
+  .sim-container {
+    background: linear-gradient(135deg, #0E2540, #1E3A5C);
+    border-radius: 16px;
+    padding: 40px;
+    color: white;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  .sim-container::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(14, 148, 136, 0.25), transparent 70%);
+    border-radius: 50%;
+  }
+  .sim-container::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(201, 155, 47, 0.18), transparent 70%);
+    border-radius: 50%;
+  }
+  .sim-body { position: relative; z-index: 1; }
+
+  .sim-label {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--teal);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .sim-instruction {
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 30px;
+    line-height: 1.8;
+  }
+
+  .slider-group {
+    margin-bottom: 22px;
+  }
+  .slider-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+  .slider-name { color: rgba(255,255,255,0.85); font-weight: 500; }
+  .slider-value {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--teal);
+  }
+  .slider-input {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.15);
+    outline: none;
+  }
+  .slider-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--teal);
+    cursor: pointer;
+    border: 3px solid white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: transform 0.1s;
+  }
+  .slider-input::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+  }
+  .slider-input::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--teal);
+    cursor: pointer;
+    border: 3px solid white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  .slider-range {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 4px;
+    font-family: var(--font-mono);
+  }
+
+  .sim-result {
+    margin-top: 30px;
+    padding: 30px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+  }
+  .sim-result-label {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.6);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .sim-total {
+    font-family: var(--font-serif);
+    font-size: 48px;
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .sim-unit { font-size: 20px; opacity: 0.7; margin-left: 4px; }
+  .sim-breakdown {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .sim-break-item { text-align: center; }
+  .sim-break-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 4px;
+  }
+  .sim-break-value {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .sim-caveat {
+    margin-top: 18px;
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.05);
+    border-left: 3px solid var(--teal);
+    border-radius: 6px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+  }
+
+  /* ============ 06. OPERATIONS ============ */
+  .ops-flow {
+    display: grid;
+    gap: 16px;
+  }
+  .ops-step {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 28px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 24px;
+    align-items: flex-start;
+  }
+  .ops-step-num {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--teal-light);
+    color: var(--teal-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .ops-step-title {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .ops-step-actor {
+    display: inline-block;
+    font-size: 11px;
+    padding: 3px 10px;
+    background: var(--ink);
+    color: white;
+    border-radius: 4px;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-left: 8px;
+  }
+  .ops-step-actor.vands { background: var(--teal); }
+  .ops-step-actor.lias  { background: var(--gold-dark); }
+  .ops-step-desc {
+    font-size: 14px;
+    color: var(--ink-light);
+    line-height: 1.8;
+  }
+
+  /* ============ 07. NEXT STEPS / CLOSING ============ */
+  .closing-cta {
+    background: linear-gradient(135deg, var(--ink), #1E3A5C);
+    color: white;
+    padding: 60px 48px;
+    border-radius: 16px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .closing-cta::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(14, 148, 136, 0.3), transparent 70%);
+    border-radius: 50%;
+  }
+  .closing-body { position: relative; z-index: 1; }
+  .closing-title {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+  .closing-text {
+    font-size: 15px;
+    line-height: 2;
+    color: rgba(255,255,255,0.85);
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .next-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 40px;
+  }
+  .next-step-box {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  .next-step-num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--teal);
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .next-step-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  .next-step-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+  }
+
+  /* ============ CHECKLIST SECTION ============ */
+  .checklist-intro {
+    background: linear-gradient(135deg, var(--teal-light), #F0F9F8);
+    border: 1px solid rgba(14, 148, 136, 0.2);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 30px;
+  }
+  .checklist-intro-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-serif);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--teal-dark);
+    margin-bottom: 8px;
+  }
+  .checklist-intro-desc {
+    font-size: 13px;
+    color: var(--ink-light);
+    line-height: 1.8;
+  }
+
+  .checklist-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .checklist-stat {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 12px;
+    text-align: center;
+  }
+  .checklist-stat-num {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .checklist-stat-label {
+    font-size: 10px;
+    color: var(--ink-soft);
+    margin-top: 2px;
+    letter-spacing: 0.05em;
+  }
+  .checklist-stat.pending .checklist-stat-num { color: var(--gold-dark); }
+  .checklist-stat.agreed  .checklist-stat-num { color: var(--teal-dark); }
+  .checklist-stat.vands-wait .checklist-stat-num { color: #3B82F6; }
+
+  /* Category group */
+  .check-cat {
+    margin-bottom: 32px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .check-cat-header {
+    padding: 16px 20px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .check-cat-header:hover {
+    background: var(--paper-dark);
+  }
+  .check-cat-id {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--teal);
+    letter-spacing: 0.15em;
+    padding: 3px 8px;
+    background: var(--teal-light);
+    border-radius: 4px;
+  }
+  .check-cat-name {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    flex: 1;
+  }
+  .check-cat-count {
+    font-size: 11px;
+    color: var(--ink-soft);
+    font-family: var(--font-mono);
+  }
+  .check-cat-toggle {
+    font-size: 14px;
+    color: var(--ink-soft);
+    transition: transform 0.2s;
+  }
+  .check-cat.collapsed .check-cat-toggle {
+    transform: rotate(-90deg);
+  }
+  .check-cat.collapsed .check-cat-body {
+    display: none;
+  }
+
+  .check-cat-body {
+    padding: 8px 0;
+  }
+
+  /* Individual item */
+  .check-item {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .check-item:last-child { border-bottom: none; }
+
+  .check-question {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.6;
+  }
+  .check-note {
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .check-answers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .answer-block {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    background: var(--paper);
+  }
+  .answer-block.lias {
+    border-left: 3px solid var(--gold);
+  }
+  .answer-block.vands {
+    border-left: 3px solid var(--teal);
+  }
+  .answer-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .answer-block.lias .answer-label { color: var(--gold-dark); }
+  .answer-block.vands .answer-label { color: var(--teal-dark); }
+  .answer-text {
+    font-size: 12px;
+    color: var(--ink-light);
+    line-height: 1.7;
+    min-height: 32px;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .answer-text.empty {
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  html[data-edit="on"] .answer-text {
+    cursor: text;
+    background: white;
+    border: 1px dashed transparent;
+    border-radius: 4px;
+    padding: 4px 6px;
+    min-height: 40px;
+    transition: border-color 0.15s;
+  }
+  html[data-edit="on"] .answer-text:hover {
+    border-color: var(--gold);
+  }
+  html[data-edit="on"] .answer-text:focus {
+    outline: 2px solid var(--teal);
+    border-color: transparent;
+    background: white;
+  }
+
+  /* Status badge */
+  .check-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+  .check-status-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+  .status-pending  { background: #FEF3C7; color: #78350F; }
+  .status-lias     { background: var(--gold-light); color: var(--gold-dark); }
+  .status-vands    { background: #DBEAFE; color: #1E40AF; }
+  .status-agreed   { background: #D1FAE5; color: #065F46; }
+
+  /* Status selector (edit mode) */
+  .status-selector {
+    display: inline-flex;
+    gap: 3px;
+    background: var(--paper-dark);
+    padding: 2px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+  .status-selector button {
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    border: none;
+    background: transparent;
+    color: var(--ink-soft);
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+  }
+  .status-selector button.active[data-s="pending"] { background: #FEF3C7; color: #78350F; }
+  .status-selector button.active[data-s="lias"]    { background: var(--gold); color: white; }
+  .status-selector button.active[data-s="vands"]   { background: #3B82F6; color: white; }
+  .status-selector button.active[data-s="agreed"]  { background: #10B981; color: white; }
+
+  .check-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-end;
+    min-width: 160px;
+  }
+  .check-tag {
+    font-size: 10px;
+    color: var(--ink-soft);
+    padding: 2px 7px;
+    background: var(--paper-dark);
+    border-radius: 4px;
+    font-family: var(--font-mono);
+  }
+
+  @media (max-width: 720px) {
+    .checklist-stats { grid-template-columns: repeat(2, 1fr); }
+    .check-item { grid-template-columns: 1fr; }
+    .check-answers { grid-template-columns: 1fr; }
+    .check-meta { align-items: flex-start; }
+  }
+
+  /* ============ FOOTER ============ */
+  .footer {
+    text-align: center;
+    padding: 40px 32px 60px;
+    color: var(--ink-soft);
+    font-size: 12px;
+    border-top: 1px solid var(--border);
+    margin-top: 60px;
+  }
+  .footer-brand {
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  /* ============ EDIT MODE ============ */
+  .edit-btn {
+    font-size: 12px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: white;
+    color: var(--ink-soft);
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .edit-btn:hover {
+    border-color: var(--teal);
+    color: var(--teal-dark);
+  }
+  .edit-btn.active {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: white;
+  }
+  .edit-btn.active:hover {
+    background: var(--teal-dark);
+  }
+
+  /* Edit mode banner */
+  .edit-banner {
+    display: none;
+    background: var(--teal);
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    position: sticky;
+    top: 57px;
+    z-index: 40;
+    box-shadow: 0 2px 8px rgba(14, 148, 136, 0.2);
+  }
+  html[data-edit="on"] .edit-banner {
+    display: block;
+  }
+
+  /* Editable field — hover/click affordance */
+  html[data-edit="on"] .editable {
+    cursor: text;
+    background: rgba(201, 155, 47, 0.08);
+    border-bottom: 1px dashed var(--gold);
+    border-radius: 2px;
+    padding: 0 4px;
+    transition: background 0.15s;
+  }
+  html[data-edit="on"] .editable:hover {
+    background: rgba(201, 155, 47, 0.18);
+  }
+  html[data-edit="on"] .editable:focus {
+    outline: 2px solid var(--teal);
+    outline-offset: 2px;
+    background: white;
+  }
+  /* In sim container (dark), editable should look different */
+  html[data-edit="on"] .sim-container .editable {
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom-color: rgba(255, 255, 255, 0.4);
+  }
+  html[data-edit="on"] .sim-container .editable:hover {
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  /* Price editable on cards and tables */
+  .editable-price {
+    display: inline-block;
+    min-width: 60px;
+  }
+
+  /* Save indicator */
+  .save-status {
+    font-size: 11px;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-right: 6px;
+  }
+  .save-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #10B981;
+  }
+  .save-dot.saving { background: var(--gold); animation: pulse 1s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  /* Reset button in edit banner */
+  .banner-reset {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    margin-left: 12px;
+    transition: background 0.15s;
+  }
+  .banner-reset:hover {
+    background: rgba(255,255,255,0.25);
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1000px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { position: static; height: auto; padding: 20px 32px; border-bottom: 1px solid var(--border); }
+    .main { padding: 40px 32px 80px; }
+    .flow-steps { grid-template-columns: 1fr; }
+    .flow-arrow { transform: rotate(90deg); }
+    .axes-grid { grid-template-columns: repeat(2, 1fr); }
+    .next-steps { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .section-title { font-size: 24px; }
+    .course-grid { grid-template-columns: 1fr; }
+    .sim-total { font-size: 36px; }
+    .sim-breakdown { grid-template-columns: 1fr; }
+    .example-row { grid-template-columns: 2fr 1fr 1fr; font-size: 11px; }
+    .example-row > :nth-child(n+3):nth-child(-n+6) { display: none; }
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--ink-soft); }
+</style>
+</head>
+<body>
+
+<!-- ================ HEADER ================ -->
+<header class="header">
+  <div class="header-inner">
+    <div style="display:flex; align-items:center;">
+      <a href="index.html" class="brand">Vands Clinic <span class="brand-x">×</span> LIAS</a>
+      <span class="brand-sub">
+        <span data-lang-only="ja">アカデミー提案</span>
+        <span data-lang-only="ko">아카데미 제안</span>
+      </span>
+    </div>
+    <div class="header-actions">
+      <div class="save-status">
+        <span class="save-dot" id="saveDot"></span>
+        <span id="saveText" data-lang-only="ja">保存済</span>
+        <span id="saveTextKo" data-lang-only="ko">저장됨</span>
+      </div>
+      <button class="edit-btn" id="editBtn" onclick="toggleEdit()">
+        <span data-lang-only="ja">✎ 編集</span>
+        <span data-lang-only="ko">✎ 편집</span>
+      </button>
+      <a href="index.html" class="back-link">
+        <span data-lang-only="ja">← 事業紹介に戻る</span>
+        <span data-lang-only="ko">← 사업 소개로</span>
+      </a>
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="ja">日本語</button>
+        <button class="lang-btn" data-lang="ko">한국어</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Edit mode banner -->
+<div class="edit-banner">
+  <span data-lang-only="ja">✎ 編集モード中 — 金額・コース名・難易度をクリックして直接編集できます</span>
+  <span data-lang-only="ko">✎ 편집 모드 중 — 금액·코스명·난이도를 클릭하여 직접 편집할 수 있습니다</span>
+  <button class="banner-reset" onclick="resetAllData()">
+    <span data-lang-only="ja">初期値に戻す</span>
+    <span data-lang-only="ko">초기값으로 되돌리기</span>
+  </button>
+</div>
+
+<div class="layout">
+
+  <!-- ================ SIDEBAR NAV ================ -->
+  <nav class="sidebar">
+    <div class="sidebar-title">
+      <span data-lang-only="ja">目次</span>
+      <span data-lang-only="ko">목차</span>
+    </div>
+    <a href="#sec-overview" class="nav-section-link active" data-target="sec-overview">
+      <span class="nav-num">01</span>
+      <span data-lang-only="ja">アカデミー全体像</span>
+      <span data-lang-only="ko">아카데미 전체상</span>
+    </a>
+    <a href="#sec-courses" class="nav-section-link" data-target="sec-courses">
+      <span class="nav-num">02</span>
+      <span data-lang-only="ja">コース体系</span>
+      <span data-lang-only="ko">코스 체계</span>
+    </a>
+    <a href="#sec-scoring" class="nav-section-link" data-target="sec-scoring">
+      <span class="nav-num">03</span>
+      <span data-lang-only="ja">スコアリングの意味</span>
+      <span data-lang-only="ko">스코어링의 의미</span>
+    </a>
+    <a href="#sec-pricing" class="nav-section-link" data-target="sec-pricing">
+      <span class="nav-num">04</span>
+      <span data-lang-only="ja">料金体系</span>
+      <span data-lang-only="ko">요금 체계</span>
+    </a>
+    <a href="#sec-revenue" class="nav-section-link" data-target="sec-revenue">
+      <span class="nav-num">05</span>
+      <span data-lang-only="ja">収益シミュレーション</span>
+      <span data-lang-only="ko">수익 시뮬레이션</span>
+    </a>
+    <a href="#sec-operations" class="nav-section-link" data-target="sec-operations">
+      <span class="nav-num">06</span>
+      <span data-lang-only="ja">運営体制</span>
+      <span data-lang-only="ko">운영 체제</span>
+    </a>
+    <a href="#sec-checklist" class="nav-section-link" data-target="sec-checklist">
+      <span class="nav-num">07</span>
+      <span data-lang-only="ja">確認事項</span>
+      <span data-lang-only="ko">확인 사항</span>
+    </a>
+    <a href="#sec-next" class="nav-section-link" data-target="sec-next">
+      <span class="nav-num">08</span>
+      <span data-lang-only="ja">次のステップ</span>
+      <span data-lang-only="ko">다음 단계</span>
+    </a>
+  </nav>
+
+  <!-- ================ MAIN ================ -->
+  <main class="main">
+
+    <!-- ========== 01. OVERVIEW ========== -->
+    <section class="section" id="sec-overview">
+      <div class="section-label">01 / Academy Overview</div>
+
+      <!-- JA -->
+      <div data-lang-only="ja">
+        <h2 class="section-title">アカデミー全体像</h2>
+        <p class="section-lead">
+          Vands Academyは、日本の医師が段階的にスキルを磨いていける<strong>3段階の学習フロー</strong>で構成されます。誰でも参加できるSTEP1から、VJDN登録を経てSTEP2の上位手技へ。医師一人ひとりの成長に寄り添う設計です。
+        </p>
+
+        <div class="flow-diagram">
+          <div class="flow-steps">
+            <div class="flow-box step1">
+              <div class="flow-label" style="color: var(--teal-dark);">STEP 01</div>
+              <div class="flow-title">通常講習</div>
+              <div class="flow-desc">登録不要<br>座学＋施術見学</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box vjdn">
+              <div class="flow-label">REGISTRATION</div>
+              <div class="flow-title">VJDN 登録</div>
+              <div class="flow-desc">Vands Japan<br>Doctor Network</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box step2">
+              <div class="flow-label" style="color: var(--gold-dark);">STEP 02</div>
+              <div class="flow-title">Vandsオリジナル</div>
+              <div class="flow-desc">VJDN会員限定<br>実技指導</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="section-lead" style="margin-bottom:0;">
+          VJDNは単なる会員制度ではなく、<strong>Vandsとリアスが日本で育てていく医師コミュニティ</strong>です。継続的な学習機会、Vandsオリジナル薬剤へのアクセス、そして長期的なパートナーシップの起点となります。
+        </p>
+      </div>
+
+      <!-- KO -->
+      <div data-lang-only="ko">
+        <h2 class="section-title">아카데미 전체상</h2>
+        <p class="section-lead">
+          Vands Academy는 일본 의사가 단계적으로 스킬을 연마할 수 있는 <strong>3단계 학습 플로우</strong>로 구성됩니다. 누구나 참여 가능한 STEP1부터, VJDN 등록을 거쳐 STEP2의 상위 시술까지. 의사 한 분 한 분의 성장에 맞춘 설계입니다.
+        </p>
+
+        <div class="flow-diagram">
+          <div class="flow-steps">
+            <div class="flow-box step1">
+              <div class="flow-label" style="color: var(--teal-dark);">STEP 01</div>
+              <div class="flow-title">일반 강습</div>
+              <div class="flow-desc">등록 불필요<br>이론 + 시술 견학</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box vjdn">
+              <div class="flow-label">REGISTRATION</div>
+              <div class="flow-title">VJDN 등록</div>
+              <div class="flow-desc">Vands Japan<br>Doctor Network</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-box step2">
+              <div class="flow-label" style="color: var(--gold-dark);">STEP 02</div>
+              <div class="flow-title">Vands 오리지널</div>
+              <div class="flow-desc">VJDN 회원 한정<br>실기 지도</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="section-lead" style="margin-bottom:0;">
+          VJDN은 단순한 회원 제도가 아니라, <strong>Vands와 LIAS가 일본에서 함께 키워가는 의사 커뮤니티</strong>입니다. 지속적인 학습 기회, Vands 오리지널 약제에 대한 접근, 그리고 장기적 파트너십의 출발점이 됩니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ========== 02. COURSES ========== -->
+    <section class="section" id="sec-courses">
+      <div class="section-label">02 / Course System</div>
+
+      <!-- JA -->
+      <div data-lang-only="ja">
+        <h2 class="section-title">コース体系</h2>
+        <p class="section-lead">
+          6つのカテゴリ・全9コースで、日本の医師ニーズを幅広くカバーします。各コースはSTEP1（見学・座学）とSTEP2（実技）の2段構成が基本です。
+        </p>
+
+        <div id="courseList-ja"></div>
+      </div>
+
+      <!-- KO -->
+      <div data-lang-only="ko">
+        <h2 class="section-title">코스 체계</h2>
+        <p class="section-lead">
+          6개 카테고리·총 9코스로, 일본 의사의 니즈를 폭넓게 커버합니다. 각 코스는 STEP1(견학·이론)과 STEP2(실기)의 2단 구성이 기본입니다.
+        </p>
+
+        <div id="courseList-ko"></div>
+      </div>
+    </section>
+
+    <!-- ========== 03. SCORING ========== -->
+    <section class="section" id="sec-scoring">
+      <div class="section-label">03 / Scoring System</div>
+
+      <!-- JA -->
+      <div data-lang-only="ja">
+        <h2 class="section-title">スコアリングの意味</h2>
+        <p class="section-lead">
+          「なぜこの料金なのか？」を、客観的な指標で可視化しました。各施術を<strong>5つの軸</strong>で評価し、合計点を価格の根拠とします。価格は感覚ではなく、難易度と価値から導かれたものです。
+        </p>
+
+        <div class="scoring-intro">
+          <div class="axes-grid">
+            <div class="axis-card">
+              <div class="axis-num">01</div>
+              <div class="axis-name">リスク</div>
+              <div class="axis-max">5点満点</div>
+            </div>
+            <div class="axis-card">
+              <div class="axis-num">02</div>
+              <div class="axis-name">時間</div>
+              <div class="axis-max">5点満点</div>
+            </div>
+            <div class="axis-card">
+              <div class="axis-num">03</div>
+              <div class="axis-name">技術力</div>
+              <div class="axis-max">5点満点</div>
+            </div>
+            <div class="axis-card">
+              <div class="axis-num">04</div>
+              <div class="axis-name">デザイン力</div>
+              <div class="axis-max">5点満点</div>
+            </div>
+            <div class="axis-card">
+              <div class="axis-num">05</div>
+              <div class="axis-name">人気度</div>
+              <div class="axis-max">5点満点</div>
+            </div>
+          </div>
+
+          <p style="margin-top:24px; font-size:14px; line-height:1.9; color:var(--ink-light);">
+            <strong>5軸×各5点＝最大25点</strong>。点数が高いほど難易度・価値が高く、料金も上位となります。カテゴリによっては顧客ニーズを踏まえた減点を適用し、実情に合った価格設定にします。
+          </p>
+        </div>
+
+        <div class="scoring-example">
+          <div class="example-label">例：HAカテゴリの代表施術</div>
+          <div class="example-row header">
+            <div class="example-cell name">施術名</div>
+            <div class="example-cell">リスク</div>
+            <div class="example-cell">時間</div>
+            <div class="example-cell">技術</div>
+            <div class="example-cell">デザイン</div>
+            <div class="example-cell">人気</div>
+            <div class="example-cell">合計</div>
+            <div class="example-cell total">評価</div>
+          </div>
+          <div class="example-row">
+            <div class="example-cell name"><strong>鼻フィラー</strong></div>
+            <div class="example-cell">5</div>
+            <div class="example-cell">4</div>
+            <div class="example-cell">5</div>
+            <div class="example-cell">5</div>
+            <div class="example-cell">5</div>
+            <div class="example-cell">24</div>
+            <div class="example-cell total">最上位</div>
+          </div>
+          <div class="example-row">
+            <div class="example-cell name">ティアトラフフィラー</div>
+            <div class="example-cell">5</div>
+            <div class="example-cell">4</div>
+            <div class="example-cell">5</div>
+            <div class="example-cell">4</div>
+            <div class="example-cell">4</div>
+            <div class="example-cell">22</div>
+            <div class="example-cell total">上位</div>
+          </div>
+          <div class="example-row">
+            <div class="example-cell name">唇フィラー</div>
+            <div class="example-cell">2</div>
+            <div class="example-cell">3</div>
+            <div class="example-cell">3</div>
+            <div class="example-cell">5</div>
+            <div class="example-cell">5</div>
+            <div class="example-cell">18</div>
+            <div class="example-cell total">標準</div>
+          </div>
+        </div>
+
+        <p class="section-lead" style="margin-top:28px; margin-bottom:0;">
+          このスコアリングシステムにより、Vandsの医師にも日本の医師にも、<strong>「なぜこの価格か」が明確に理解できる</strong>価格体系になります。感覚的な価格設定ではなく、体系化された根拠のある料金表です。
+        </p>
+      </div>
+
+      <!-- KO -->
+      <div data-lang-only="ko">
+        <h2 class="section-title">스코어링의 의미</h2>
+        <p class="section-lead">
+          "왜 이 요금인가?"를 객관적인 지표로 가시화했습니다. 각 시술을 <strong>5가지 축</strong>으로 평가하고, 합계 점수를 가격의 근거로 합니다. 가격은 감각이 아니라 난이도와 가치에서 도출된 것입니다.
+        </p>
+
+        <div class="scoring-intro">
+          <div class="axes-grid">
+            <div class="axis-card">
+              <div class="axis-num">01</div>
+              <div class="axis-name">리스크</div>
+              <div class="axis-max">5점 만점</div>
+            </div>
+            <div class="axis-card">
+              <div class="axis-num">02</div>
+              <div class="axis-name">시간</div>
+              <div class="axis-max">5점 만점</div>
+            </div>
+            <div class="axis-card">
+              <div class="axis-num">03</div>
+              <div class="axis-name">기술력</div>
+              <div class="axis-max">5점 만점</div>
+            </div>
+            <div class="axis-card">
+              <div class="axis-num">04</div>
+              <div class="axis-name">디자인력</div>
+              <div class="axis-max">5점 만점</div>
+            </div>
+            <div class="axis-card">
+              <div class="axis-num">05</div>
+              <div class="axis-name">인기도</div>
+              <div class="axis-max">5점 만점</div>
+            </div>
+          </div>
+
+          <p style="margin-top:24px; font-size:14px; line-height:1.9; color:var(--ink-light);">
+            <strong>5축 × 각 5점 = 최대 25점</strong>. 점수가 높을수록 난이도·가치가 높고, 요금도 상위가 됩니다. 카테고리에 따라서는 고객 니즈를 고려한 감점을 적용하여 실정에 맞는 가격 설정으로 합니다.
+          </p>
+        </div>
+
+        <div class="scoring-example">
+          <div class="example-label">예: HA 카테고리의 대표 시술</div>
+          <div class="example-row header">
+            <div class="example-cell name">시술명</div>
+            <div class="example-cell">리스크</div>
+            <div class="example-cell">시간</div>
+            <div class="example-cell">기술</div>
+            <div class="example-cell">디자인</div>
+            <div class="example-cell">인기</div>
+            <div class="example-cell">합계</div>
+            <div class="example-cell total">평가</div>
+          </div>
+          <div class="example-row">
+            <div class="example-cell name"><strong>코 필러</strong></div>
+            <div class="example-cell">5</div>
+            <div class="example-cell">4</div>
+            <div class="example-cell">5</div>
+            <div class="example-cell">5</div>
+            <div class="example-cell">5</div>
+            <div class="example-cell">24</div>
+            <div class="example-cell total">최상위</div>
+          </div>
+          <div class="example-row">
+            <div class="example-cell name">티어트로프 필러</div>
+            <div class="example-cell">5</div>
+            <div class="example-cell">4</div>
+            <div class="example-cell">5</div>
+            <div class="example-cell">4</div>
+            <div class="example-cell">4</div>
+            <div class="example-cell">22</div>
+            <div class="example-cell total">상위</div>
+          </div>
+          <div class="example-row">
+            <div class="example-cell name">입술 필러</div>
+            <div class="example-cell">2</div>
+            <div class="example-cell">3</div>
+            <div class="example-cell">3</div>
+            <div class="example-cell">5</div>
+            <div class="example-cell">5</div>
+            <div class="example-cell">18</div>
+            <div class="example-cell total">표준</div>
+          </div>
+        </div>
+
+        <p class="section-lead" style="margin-top:28px; margin-bottom:0;">
+          이 스코어링 시스템에 의해 Vands의 의사에게도 일본의 의사에게도 <strong>"왜 이 가격인가"가 명확히 이해되는</strong> 가격 체계가 됩니다. 감각적인 가격 설정이 아닌 체계화된 근거 있는 요금표입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ========== 04. PRICING ========== -->
+    <section class="section" id="sec-pricing">
+      <div class="section-label">04 / Pricing</div>
+
+      <!-- JA -->
+      <div data-lang-only="ja">
+        <h2 class="section-title">料金体系</h2>
+        <p class="section-lead">
+          スコアリングに基づいた、全9コースの料金一覧です。STEP1（見学）はエントリー価格、STEP2（実技）は難易度に応じた価格設定。個別1対1指導もオプションで追加可能です。
+        </p>
+
+        <div class="pricing-table-wrap">
+          <table class="pricing-table" id="pricingTable-ja"></table>
+        </div>
+
+        <div class="pricing-notes">
+          <div>★ 同カテゴリ内で2コマ以上の同日受講を希望される場合、2コマ金額 ＋¥30,000 にて実施可能</div>
+          <div>★ STEP2にて施術モデルを同伴される場合、講習料より10%OFF（必要人数はコースごとに異なる）</div>
+          <div>★ 講習費用には、受講費・通訳費用・使用薬剤費用・施術モデル費用が含まれる（※講習内容により追加薬剤費用が発生する場合あり）</div>
+        </div>
+      </div>
+
+      <!-- KO -->
+      <div data-lang-only="ko">
+        <h2 class="section-title">요금 체계</h2>
+        <p class="section-lead">
+          스코어링에 기반한 전 9코스의 요금 일람입니다. STEP1(견학)은 엔트리 가격, STEP2(실기)는 난이도에 따른 가격 설정. 1:1 개별 지도도 옵션으로 추가 가능합니다.
+        </p>
+
+        <div class="pricing-table-wrap">
+          <table class="pricing-table" id="pricingTable-ko"></table>
+        </div>
+
+        <div class="pricing-notes">
+          <div>★ 동일 카테고리 내에서 같은 날 2코마 이상 수강 희망 시, 2코마 금액 + 30,000엔으로 실시 가능</div>
+          <div>★ STEP2에서 시술 모델 동반 시, 강습료에서 10% 할인 (필요 인원은 코스마다 다름)</div>
+          <div>★ 강습 비용에는 수강비·통역 비용·사용 약제 비용·시술 모델 비용이 포함됨 (※강습 내용에 따라 추가 약제 비용이 발생할 수 있음)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 05. REVENUE SIMULATION ========== -->
+    <section class="section" id="sec-revenue">
+      <div class="section-label">05 / Revenue Simulation</div>
+
+      <!-- JA -->
+      <div data-lang-only="ja">
+        <h2 class="section-title">収益シミュレーション</h2>
+        <p class="section-lead">
+          月間何名を集客できれば、年間どれだけの売上が見込めるか。<strong>実際にスライダーを動かして</strong>感触を確かめてください。立ち上げ期は控えめな数字からスタートし、認知の拡大とともに段階的に伸ばしていく想定です。
+        </p>
+
+        <div class="sim-container">
+          <div class="sim-body">
+            <div class="sim-label">Interactive Simulation</div>
+            <div class="sim-instruction">月間の集客数と、STEP1・STEP2・個別指導の受講比率を調整してください。<br>年間売上がリアルタイムで計算されます。</div>
+
+            <div class="slider-group">
+              <div class="slider-label">
+                <span class="slider-name" data-lang-only="ja">月間集客数</span>
+                <span class="slider-name" data-lang-only="ko">월간 집객 수</span>
+                <span class="slider-value"><span id="simMonthly">6</span><span style="font-size:12px; opacity:0.6;"> 名/月</span></span>
+              </div>
+              <input type="range" class="slider-input" id="inMonthly" min="1" max="30" value="6">
+              <div class="slider-range"><span>1</span><span>30 <span data-lang-only="ja">名/月</span><span data-lang-only="ko">명/월</span></span></div>
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-label">
+                <span class="slider-name" data-lang-only="ja">STEP1 受講比率</span>
+                <span class="slider-name" data-lang-only="ko">STEP1 수강 비율</span>
+                <span class="slider-value"><span id="simStep1">60</span>%</span>
+              </div>
+              <input type="range" class="slider-input" id="inStep1" min="0" max="100" value="60">
+              <div class="slider-range"><span>0%</span><span>100%</span></div>
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-label">
+                <span class="slider-name" data-lang-only="ja">STEP2 受講比率</span>
+                <span class="slider-name" data-lang-only="ko">STEP2 수강 비율</span>
+                <span class="slider-value"><span id="simStep2">30</span>%</span>
+              </div>
+              <input type="range" class="slider-input" id="inStep2" min="0" max="100" value="30">
+              <div class="slider-range"><span>0%</span><span>100%</span></div>
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-label">
+                <span class="slider-name" data-lang-only="ja">個別指導 追加比率</span>
+                <span class="slider-name" data-lang-only="ko">개별 지도 추가 비율</span>
+                <span class="slider-value"><span id="simSolo">10</span>%</span>
+              </div>
+              <input type="range" class="slider-input" id="inSolo" min="0" max="100" value="10">
+              <div class="slider-range"><span>0%</span><span>100%</span></div>
+            </div>
+
+            <div class="sim-result">
+              <div class="sim-result-label" data-lang-only="ja">年間売上（想定）</div>
+              <div class="sim-result-label" data-lang-only="ko">연간 매출 (예상)</div>
+              <div class="sim-total">
+                <span id="simTotal">—</span>
+                <span class="sim-unit" data-lang-only="ja">円</span>
+                <span class="sim-unit" data-lang-only="ko">엔</span>
+              </div>
+              <div style="font-size:12px; color:rgba(255,255,255,0.6);">
+                <span data-lang-only="ja">年間延べ </span>
+                <span data-lang-only="ko">연간 누적 </span>
+                <span id="simAnnualPersons">72</span>
+                <span data-lang-only="ja"> 名が受講する前提（月平均単価 × 人数で計算）</span>
+                <span data-lang-only="ko"> 명이 수강하는 전제 (월 평균 단가 × 인원수로 계산)</span>
+              </div>
+
+              <div class="sim-breakdown">
+                <div class="sim-break-item">
+                  <div class="sim-break-label">STEP1</div>
+                  <div class="sim-break-value">¥<span id="simRevStep1">—</span></div>
+                </div>
+                <div class="sim-break-item">
+                  <div class="sim-break-label">STEP2</div>
+                  <div class="sim-break-value">¥<span id="simRevStep2">—</span></div>
+                </div>
+                <div class="sim-break-item">
+                  <div class="sim-break-label">
+                    <span data-lang-only="ja">個別指導</span>
+                    <span data-lang-only="ko">개별 지도</span>
+                  </div>
+                  <div class="sim-break-value">¥<span id="simRevSolo">—</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="sim-caveat">
+              <strong data-lang-only="ja">※ 注記</strong>
+              <strong data-lang-only="ko">※ 주의</strong>
+              <span data-lang-only="ja">：この数字はコース料金の総売上であり、運営費・講師費・通訳費・薬剤費などの経費は含まれません。VandsとLIASの収益配分は別途協議のうえ決定します。立ち上げ初期は月5〜8名程度を現実的な目標としています。</span>
+              <span data-lang-only="ko">：이 수치는 코스 요금의 총매출이며, 운영비·강사비·통역비·약제비 등의 경비는 포함되지 않습니다. Vands와 LIAS의 수익 배분은 별도 협의 후 결정합니다. 시작 초기는 월 5~8명 정도를 현실적인 목표로 삼고 있습니다.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KO  (header only; same simulator in JA block is shared via scripts, so no duplicate sim UI) -->
+      <div data-lang-only="ko">
+        <h2 class="section-title">수익 시뮬레이션</h2>
+        <p class="section-lead">
+          월간 몇 명을 집객할 수 있으면 연간 얼마의 매출이 예상되는가. <strong>실제로 슬라이더를 움직여</strong> 감각을 확인해 보세요. 시작 초기는 소박한 수치에서 출발하여 인지도 확대와 함께 단계적으로 성장시켜 가는 상정입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ========== 06. OPERATIONS ========== -->
+    <section class="section" id="sec-operations">
+      <div class="section-label">06 / Operations</div>
+
+      <!-- JA -->
+      <div data-lang-only="ja">
+        <h2 class="section-title">運営体制</h2>
+        <p class="section-lead">
+          医師がアカデミーを知ってから、実際に受講し、VJDNメンバーとなるまでの全プロセスを<strong>LIASが一貫して運営</strong>します。VandsはVands Clinic現地での講習に集中でき、集客・申込受付・実務はすべてLIAS側で完結します。
+        </p>
+
+        <div class="ops-flow">
+          <div class="ops-step">
+            <div class="ops-step-num">1</div>
+            <div>
+              <div class="ops-step-title">医師への告知・集客<span class="ops-step-actor lias">LIAS</span></div>
+              <div class="ops-step-desc">
+                SNS・医師コミュニティ・学会ネットワークを通じて、アカデミーの存在を告知。美容医療参入希望の医師、既存の開業医を中心にターゲティングします。
+              </div>
+            </div>
+          </div>
+          <div class="ops-step">
+            <div class="ops-step-num">2</div>
+            <div>
+              <div class="ops-step-title">個別ヒアリング・コース提案<span class="ops-step-actor lias">LIAS</span></div>
+              <div class="ops-step-desc">
+                問合せ医師に対し、経験値・関心分野・目標をヒアリング。Vandsの標準カリキュラム、または個別カスタマイズどちらが最適かを判断し、最適なコースを提案します。
+              </div>
+            </div>
+          </div>
+          <div class="ops-step">
+            <div class="ops-step-num">3</div>
+            <div>
+              <div class="ops-step-title">申込・決済・日程調整<span class="ops-step-actor lias">LIAS</span></div>
+              <div class="ops-step-desc">
+                オンラインでの受講申込・決済処理。Vandsの講習日程と医師の希望を調整し、渡韓手配・宿泊情報などをサポート。
+              </div>
+            </div>
+          </div>
+          <div class="ops-step">
+            <div class="ops-step-num">4</div>
+            <div>
+              <div class="ops-step-title">現地講習の実施<span class="ops-step-actor vands">Vands</span></div>
+              <div class="ops-step-desc">
+                Vands Clinic現地で、Vandsのドクター陣による講習を実施。LIASから派遣される日韓通訳が同席し、円滑な技術移転をサポートします。
+              </div>
+            </div>
+          </div>
+          <div class="ops-step">
+            <div class="ops-step-num">5</div>
+            <div>
+              <div class="ops-step-title">VJDN登録・継続的フォロー<span class="ops-step-actor lias">LIAS</span></div>
+              <div class="ops-step-desc">
+                受講修了後、希望医師はVJDNに登録。以後、上位コース案内・Vandsオリジナル薬剤の案内・継続的な技術サポートを提供し、長期的な関係を築きます。
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KO -->
+      <div data-lang-only="ko">
+        <h2 class="section-title">운영 체제</h2>
+        <p class="section-lead">
+          의사가 아카데미를 알게 된 후, 실제로 수강하고, VJDN 멤버가 되기까지의 전 프로세스를 <strong>LIAS가 일관되게 운영</strong>합니다. Vands는 Vands Clinic 현지에서의 강습에 집중할 수 있고, 집객·신청 접수·실무는 모두 LIAS 측에서 완결합니다.
+        </p>
+
+        <div class="ops-flow">
+          <div class="ops-step">
+            <div class="ops-step-num">1</div>
+            <div>
+              <div class="ops-step-title">의사 대상 홍보·집객<span class="ops-step-actor lias">LIAS</span></div>
+              <div class="ops-step-desc">
+                SNS·의사 커뮤니티·학회 네트워크를 통해 아카데미의 존재를 알림. 미용 의료 진입을 희망하는 의사, 기존 개업의를 중심으로 타겟팅합니다.
+              </div>
+            </div>
+          </div>
+          <div class="ops-step">
+            <div class="ops-step-num">2</div>
+            <div>
+              <div class="ops-step-title">개별 히어링·코스 제안<span class="ops-step-actor lias">LIAS</span></div>
+              <div class="ops-step-desc">
+                문의한 의사에 대해 경험치·관심 분야·목표를 히어링. Vands의 표준 커리큘럼, 또는 개별 커스터마이즈 중 어느 쪽이 최적인지 판단하여 최적의 코스를 제안합니다.
+              </div>
+            </div>
+          </div>
+          <div class="ops-step">
+            <div class="ops-step-num">3</div>
+            <div>
+              <div class="ops-step-title">신청·결제·일정 조정<span class="ops-step-actor lias">LIAS</span></div>
+              <div class="ops-step-desc">
+                온라인 수강 신청·결제 처리. Vands의 강습 일정과 의사의 희망을 조정하여 방한 수배·숙박 정보 등을 지원.
+              </div>
+            </div>
+          </div>
+          <div class="ops-step">
+            <div class="ops-step-num">4</div>
+            <div>
+              <div class="ops-step-title">현지 강습 실시<span class="ops-step-actor vands">Vands</span></div>
+              <div class="ops-step-desc">
+                Vands Clinic 현지에서 Vands의 닥터진에 의한 강습을 실시. LIAS에서 파견되는 한일 통역이 동석하여 원활한 기술 이전을 지원합니다.
+              </div>
+            </div>
+          </div>
+          <div class="ops-step">
+            <div class="ops-step-num">5</div>
+            <div>
+              <div class="ops-step-title">VJDN 등록·지속적 팔로우<span class="ops-step-actor lias">LIAS</span></div>
+              <div class="ops-step-desc">
+                수강 수료 후 희망 의사는 VJDN에 등록. 이후 상위 코스 안내·Vands 오리지널 약제 안내·지속적인 기술 지원을 제공하여 장기적 관계를 구축합니다.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 07. CHECKLIST ========== -->
+    <section class="section" id="sec-checklist">
+      <div class="section-label">07 / Items to Confirm</div>
+
+      <!-- JA -->
+      <div data-lang-only="ja">
+        <h2 class="section-title">確認事項</h2>
+        <p class="section-lead">
+          このアカデミーを立ち上げるにあたり、<strong>VandsとLIASで確認・合意が必要な論点</strong>を整理しました。両社がこの画面上で回答を書き込みながら、一緒に詰めていく作業用のセクションです。
+        </p>
+      </div>
+
+      <!-- KO -->
+      <div data-lang-only="ko">
+        <h2 class="section-title">확인 사항</h2>
+        <p class="section-lead">
+          이 아카데미를 시작함에 있어 <strong>Vands와 LIAS가 확인·합의해야 할 논점</strong>을 정리했습니다. 양사가 이 화면상에서 답변을 작성해 가며 함께 검토하는 작업용 섹션입니다.
+        </p>
+      </div>
+
+      <!-- Stats header (bilingual via lang-only wrappers) -->
+      <div class="checklist-intro">
+        <div class="checklist-intro-title">
+          <span style="font-size:18px;">📋</span>
+          <span data-lang-only="ja">協業のための確認リスト</span>
+          <span data-lang-only="ko">협업을 위한 확인 리스트</span>
+        </div>
+        <div class="checklist-intro-desc">
+          <span data-lang-only="ja">編集モードをONにすると、各項目の回答欄とステータスを書き換えられます。LIAS側の仮回答はオレンジ色、Vands側の回答はティール色で区別されます。</span>
+          <span data-lang-only="ko">편집 모드를 ON으로 하면 각 항목의 답변란과 상태를 수정할 수 있습니다. LIAS의 임시 답변은 주황색, Vands의 답변은 청록색으로 구분됩니다.</span>
+        </div>
+        <div class="checklist-stats" id="checkStats"></div>
+      </div>
+
+      <div id="checklistBody"></div>
+    </section>
+
+    <!-- ========== 08. NEXT STEPS ========== -->
+    <section class="section" id="sec-next">
+      <div class="section-label">08 / Next Steps</div>
+
+      <!-- JA -->
+      <div data-lang-only="ja">
+        <h2 class="section-title">次のステップ</h2>
+        <p class="section-lead">
+          この提案に賛同いただけましたら、以下のステップで具体的な協業に進みたいと考えています。
+        </p>
+
+        <div class="closing-cta">
+          <div class="closing-body">
+            <div class="closing-title">
+              一緒に、日本の美容医療の<br>
+              新しい標準をつくりましょう。
+            </div>
+            <div class="closing-text">
+              このプログラムは、VandsとLIASの両社が歩幅を合わせて進めていくことで、はじめて実現できるものです。お互いの強みを活かし、段階的に、確実に、日本市場を切り拓いていきましょう。
+            </div>
+
+            <div class="next-steps">
+              <div class="next-step-box">
+                <div class="next-step-num">STEP 01</div>
+                <div class="next-step-title">提案内容の確認</div>
+                <div class="next-step-desc">コース構成・料金・運営フローについてご確認・ご質問</div>
+              </div>
+              <div class="next-step-box">
+                <div class="next-step-num">STEP 02</div>
+                <div class="next-step-title">協議・合意形成</div>
+                <div class="next-step-desc">収益配分・VJDN要件・運営詳細の協議</div>
+              </div>
+              <div class="next-step-box">
+                <div class="next-step-num">STEP 03</div>
+                <div class="next-step-title">パイロット開始</div>
+                <div class="next-step-desc">少人数での試験講習で運営フローを検証</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KO -->
+      <div data-lang-only="ko">
+        <h2 class="section-title">다음 단계</h2>
+        <p class="section-lead">
+          이 제안에 공감해 주신다면, 다음 단계로 구체적인 협업에 들어가고자 합니다.
+        </p>
+
+        <div class="closing-cta">
+          <div class="closing-body">
+            <div class="closing-title">
+              함께, 일본 미용 의료의<br>
+              새로운 표준을 만들어 갑시다.
+            </div>
+            <div class="closing-text">
+              이 프로그램은 Vands와 LIAS 양사가 발맞춰 진행함으로써 비로소 실현될 수 있는 것입니다. 서로의 강점을 살려 단계적으로, 확실하게, 일본 시장을 개척해 나갑시다.
+            </div>
+
+            <div class="next-steps">
+              <div class="next-step-box">
+                <div class="next-step-num">STEP 01</div>
+                <div class="next-step-title">제안 내용 확인</div>
+                <div class="next-step-desc">코스 구성·요금·운영 플로우 확인 및 질의</div>
+              </div>
+              <div class="next-step-box">
+                <div class="next-step-num">STEP 02</div>
+                <div class="next-step-title">협의·합의 형성</div>
+                <div class="next-step-desc">수익 배분·VJDN 요건·운영 상세 협의</div>
+              </div>
+              <div class="next-step-box">
+                <div class="next-step-num">STEP 03</div>
+                <div class="next-step-title">파일럿 시작</div>
+                <div class="next-step-desc">소규모 시범 강습으로 운영 플로우 검증</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <div class="footer">
+      <div class="footer-brand">Vands Clinic × LIAS</div>
+      <div data-lang-only="ja">2026 Academy Proposal</div>
+      <div data-lang-only="ko">2026 아카데미 제안</div>
+    </div>
+  </main>
+</div>
+
+<!-- ================ DATA + SCRIPT ================ -->
+<script>
+/* ============================================================
+   INITIAL DATA (from PDF - 初期値として保持、リセット時に使用)
+   ============================================================ */
+const INITIAL_CATEGORIES = [
+  { id:'ha',     color:'ha',     name:{ja:'HA（ヒアルロン酸）', ko:'HA (히알루론산)'} },
+  { id:'btx',    color:'btx',    name:{ja:'BTX（ボトックス）',  ko:'BTX (보툴리눔 톡신)'} },
+  { id:'fat',    color:'fat',    name:{ja:'脂肪溶解注射',       ko:'지방 용해 주사'} },
+  { id:'inj',    color:'inj',    name:{ja:'注入(スキンブースター・PDRN)', ko:'주입 (스킨부스터·PDRN)'} },
+  { id:'thread', color:'thread', name:{ja:'Thread（スレッドリフト）', ko:'실 리프팅'} },
+  { id:'orig',   color:'orig',   name:{ja:'Vandsオリジナル',    ko:'Vands 오리지널'} },
+];
+
+const INITIAL_COURSES = [
+  { id:'c1', catId:'ha',     difficulty:5, step1:30000,  step2:130000, solo:60000, vjdn:'step2_only',
+    name:{ja:'鼻コース', ko:'코 코스'} },
+  { id:'c2', catId:'ha',     difficulty:4, step1:30000,  step2:100000, solo:50000, vjdn:'step2_only',
+    name:{ja:'涙袋・唇コース', ko:'애교살·입술 코스'} },
+  { id:'c3', catId:'ha',     difficulty:3, step1:30000,  step2:80000,  solo:40000, vjdn:'step2_only',
+    name:{ja:'輪郭・童顔コース', ko:'윤곽·동안 코스'} },
+  { id:'c4', catId:'btx',    difficulty:3, step1:30000,  step2:80000,  solo:40000, vjdn:'step2_only',
+    name:{ja:'フェイスBTXコース', ko:'페이스 BTX 코스'} },
+  { id:'c5', catId:'fat',    difficulty:5, step1:30000,  step2:120000, solo:60000, vjdn:'step2_only',
+    name:{ja:'鼻彫刻注射コース', ko:'코 조각 주사 코스'} },
+  { id:'c6', catId:'fat',    difficulty:3, step1:30000,  step2:80000,  solo:40000, vjdn:'step2_only',
+    name:{ja:'フェイスライン脂肪溶解', ko:'얼굴 라인 지방 용해'} },
+  { id:'c7', catId:'inj',    difficulty:2, step1:30000,  step2:60000,  solo:30000, vjdn:'step2_only',
+    name:{ja:'スキンブースター総合コース', ko:'스킨부스터 종합 코스'} },
+  { id:'c8', catId:'thread', difficulty:5, step1:null,   step2:150000, solo:80000, vjdn:'required',
+    name:{ja:'スレッドリフトコース', ko:'실 리프팅 코스'} },
+  { id:'c9', catId:'orig',   difficulty:5, step1:null,   step2:150000, solo:80000, vjdn:'required',
+    name:{ja:'Vandsオリジナルネックリフト', ko:'Vands 오리지널 넥 리프트'} },
+];
+
+/* ============================================================
+   CHECKLIST DATA - 確認事項
+   ============================================================ */
+const INITIAL_CHECKLIST_CATS = [
+  {
+    id: 'A',
+    name: { ja: '講習の運営前提', ko: '강습 운영 전제' },
+    desc: { ja: '時間・人数・頻度の基本条件', ko: '시간·인원·빈도의 기본 조건' },
+  },
+  {
+    id: 'B',
+    name: { ja: 'Vands側の体制', ko: 'Vands 측 체제' },
+    desc: { ja: '講師・薬剤・設備の手配', ko: '강사·약제·설비 수배' },
+  },
+  {
+    id: 'C',
+    name: { ja: '渡韓・受講者の実務', ko: '방한·수강자 실무' },
+    desc: { ja: '会場・滞在・通訳・キャンセル', ko: '회장·체류·통역·취소' },
+  },
+  {
+    id: 'D',
+    name: { ja: 'コース個別事項', ko: '코스 개별 사항' },
+    desc: { ja: '各コースの所要時間・モデル数・薬剤量', ko: '각 코스의 소요 시간·모델 수·약제량' },
+  },
+  {
+    id: 'E',
+    name: { ja: 'VJDN・継続関係', ko: 'VJDN·지속적 관계' },
+    desc: { ja: '会員登録・更新・特典', ko: '회원 등록·갱신·특전' },
+  },
+  {
+    id: 'F',
+    name: { ja: 'ビジネス面', ko: '비즈니스 측면' },
+    desc: { ja: '収益配分・決済・契約', ko: '수익 배분·결제·계약' },
+  },
+];
+
+const INITIAL_CHECKLIST_ITEMS = [
+  // A. 講習の運営前提
+  { id:'A1', catId:'A', status:'pending',
+    q: { ja:'STEP1 の所要時間は?', ko:'STEP1의 소요 시간은?' },
+    note: { ja:'座学＋施術見学で、半日か1日か。', ko:'이론 + 시술 견학으로, 반나절인지 1일인지.' },
+    lias: { ja:'半日（4時間程度）を想定', ko:'반나절(4시간 정도)을 상정' },
+    vands: { ja:'', ko:'' } },
+  { id:'A2', catId:'A', status:'pending',
+    q: { ja:'STEP2 の所要時間は?', ko:'STEP2의 소요 시간은?' },
+    note: { ja:'座学＋実技で、コースにより異なるか。', ko:'이론 + 실기로, 코스에 따라 다른지.' },
+    lias: { ja:'1日（6〜8時間）を標準として、難易度高いコースは1.5日想定', ko:'1일(6~8시간)을 표준으로, 난이도 높은 코스는 1.5일 상정' },
+    vands: { ja:'', ko:'' } },
+  { id:'A3', catId:'A', status:'pending',
+    q: { ja:'1日あたりの最大開催コマ数は?', ko:'하루 최대 개최 코마 수는?' },
+    note: { ja:'午前・午後で別コース、など実現可能か。', ko:'오전·오후로 다른 코스, 등 실현 가능한지.' },
+    lias: { ja:'STEP1 なら2コマ／日、STEP2 は1コマ／日を想定', ko:'STEP1이면 2코마/일, STEP2는 1코마/일 상정' },
+    vands: { ja:'', ko:'' } },
+  { id:'A4', catId:'A', status:'pending',
+    q: { ja:'最低開催人数は? 下回った場合は?', ko:'최소 개최 인원은? 미달 시는?' },
+    note: { ja:'3名以下なら開催中止か、延期か。', ko:'3명 이하라면 개최 중지인지, 연기인지.' },
+    lias: { ja:'STEP1 は最小3名、下回る場合は日程統合または延期', ko:'STEP1은 최소 3명, 미달 시 일정 통합 또는 연기' },
+    vands: { ja:'', ko:'' } },
+  { id:'A5', catId:'A', status:'pending',
+    q: { ja:'年間の開催予定回数は?', ko:'연간 개최 예정 횟수는?' },
+    note: { ja:'月1回定期開催か、都度調整か。', ko:'월 1회 정기 개최인지, 매번 조정인지.' },
+    lias: { ja:'月1〜2回の定期開催を目指す', ko:'월 1~2회 정기 개최 목표' },
+    vands: { ja:'', ko:'' } },
+  { id:'A6', catId:'A', status:'pending',
+    q: { ja:'開催曜日の希望は?', ko:'개최 요일 희망은?' },
+    note: { ja:'日本の医師の休診日（水・木・日が多い）との調整。', ko:'일본 의사 휴진일(수·목·일이 많음)과 조정.' },
+    lias: { ja:'水・木・日曜を中心に調整したい', ko:'수·목·일요일 중심으로 조정 희망' },
+    vands: { ja:'', ko:'' } },
+
+  // B. Vands側の体制
+  { id:'B1', catId:'B', status:'pending',
+    q: { ja:'アカデミー対応可能な医師は何名いますか?', ko:'아카데미 대응 가능한 의사는 몇 명입니까?' },
+    note: { ja:'診療と並行して講師対応できる医師数。', ko:'진료와 병행하여 강사 대응 가능한 의사 수.' },
+    lias: { ja:'（Vandsにご確認）', ko:'(Vands에 확인)' },
+    vands: { ja:'', ko:'' } },
+  { id:'B2', catId:'B', status:'pending',
+    q: { ja:'各医師が対応できるコース範囲は?', ko:'각 의사가 대응 가능한 코스 범위는?' },
+    note: { ja:'全コース対応できるのか、専門分野のみか。', ko:'전 코스 대응 가능한지, 전문 분야만인지.' },
+    lias: { ja:'', ko:'' },
+    vands: { ja:'', ko:'' } },
+  { id:'B3', catId:'B', status:'pending',
+    q: { ja:'講師の指名制度はありますか?', ko:'강사 지명 제도는 있습니까?' },
+    note: { ja:'医師が希望講師を指名できるか、料金差は?', ko:'의사가 희망 강사를 지명할 수 있는지, 요금 차이는?' },
+    lias: { ja:'将来的に指名可能にできるとブランド強化に', ko:'장래적으로 지명 가능하게 하면 브랜드 강화에' },
+    vands: { ja:'', ko:'' } },
+  { id:'B4', catId:'B', status:'pending',
+    q: { ja:'使用薬剤の手配は Vands 側? 持ち込み可?', ko:'사용 약제 수배는 Vands 측? 반입 가능?' },
+    note: { ja:'Vandsオリジナル薬剤の供給ルート。', ko:'Vands 오리지널 약제 공급 루트.' },
+    lias: { ja:'原則 Vands 側で手配、講習費に含む前提', ko:'원칙적으로 Vands 측에서 수배, 강습비 포함 전제' },
+    vands: { ja:'', ko:'' } },
+  { id:'B5', catId:'B', status:'pending',
+    q: { ja:'追加薬剤費が発生する条件は?', ko:'추가 약제비 발생 조건은?' },
+    note: { ja:'標準量を超えた場合の費用計算方法。', ko:'표준량을 초과한 경우의 비용 계산 방법.' },
+    lias: { ja:'標準量を明記し、超過分は別途請求（事前告知）', ko:'표준량을 명기, 초과분은 별도 청구(사전 고지)' },
+    vands: { ja:'', ko:'' } },
+  { id:'B6', catId:'B', status:'pending',
+    q: { ja:'実技モデルは何名必要? 誰が手配?', ko:'실기 모델은 몇 명 필요? 누가 수배?' },
+    note: { ja:'コースごとに必要モデル数と確保方法。', ko:'코스별 필요 모델 수와 확보 방법.' },
+    lias: { ja:'Vands 側で現地モデルを手配、コースごとの必要数を定義', ko:'Vands 측에서 현지 모델 수배, 코스별 필요 수 정의' },
+    vands: { ja:'', ko:'' } },
+
+  // C. 渡韓・受講者の実務
+  { id:'C1', catId:'C', status:'pending',
+    q: { ja:'講習開催場所は Vands Clinic 内? 別会場?', ko:'강습 개최 장소는 Vands Clinic 내? 별도 회장?' },
+    note: { ja:'診療と並行するなら時間帯の制約あり。', ko:'진료와 병행한다면 시간대 제약 있음.' },
+    lias: { ja:'Vands Clinic 内を想定', ko:'Vands Clinic 내 상정' },
+    vands: { ja:'', ko:'' } },
+  { id:'C2', catId:'C', status:'pending',
+    q: { ja:'1回の講習に必要な滞在日数は?', ko:'1회 강습에 필요한 체류 일수는?' },
+    note: { ja:'講習1日＋前後日で計2〜3泊?', ko:'강습 1일 + 전후일로 총 2~3박?' },
+    lias: { ja:'STEP1 は1泊2日、STEP2 は2泊3日を標準', ko:'STEP1은 1박 2일, STEP2는 2박 3일을 표준' },
+    vands: { ja:'', ko:'' } },
+  { id:'C3', catId:'C', status:'pending',
+    q: { ja:'宿泊手配のサポート範囲は?', ko:'숙박 수배 지원 범위는?' },
+    note: { ja:'推奨ホテル紹介のみか、予約代行まで行うか。', ko:'추천 호텔 소개만인지, 예약 대행까지 하는지.' },
+    lias: { ja:'LIAS 側で推奨ホテルリスト提供、予約は各医師対応', ko:'LIAS 측에서 추천 호텔 리스트 제공, 예약은 각 의사 대응' },
+    vands: { ja:'', ko:'' } },
+  { id:'C4', catId:'C', status:'pending',
+    q: { ja:'空港送迎の有無は?', ko:'공항 픽업 유무는?' },
+    note: { ja:'サービスに含めるか、オプションか。', ko:'서비스에 포함할지, 옵션으로 할지.' },
+    lias: { ja:'STEP2 以上は空港送迎を含める方向で検討', ko:'STEP2 이상은 공항 픽업 포함 방향으로 검토' },
+    vands: { ja:'', ko:'' } },
+  { id:'C5', catId:'C', status:'pending',
+    q: { ja:'通訳の配置は1講習につき何名?', ko:'통역 배치는 1강습당 몇 명?' },
+    note: { ja:'医学用語対応可能な通訳が必要。', ko:'의학 용어 대응 가능한 통역 필요.' },
+    lias: { ja:'1講習につき1名、グループ6名以上の場合は2名体制', ko:'1강습당 1명, 그룹 6명 이상일 경우 2명 체제' },
+    vands: { ja:'', ko:'' } },
+  { id:'C6', catId:'C', status:'pending',
+    q: { ja:'キャンセル規定は?', ko:'취소 규정은?' },
+    note: { ja:'医師側事情・主催側事情それぞれの扱い。', ko:'의사 측 사정·주최 측 사정 각각의 취급.' },
+    lias: { ja:'14日前まで全額返金、7日前まで50%、以降返金不可', ko:'14일 전까지 전액 환불, 7일 전까지 50%, 이후 환불 불가' },
+    vands: { ja:'', ko:'' } },
+
+  // D. コース個別事項
+  { id:'D1', catId:'D', status:'pending',
+    q: { ja:'各コースの所要時間（詳細）', ko:'각 코스의 소요 시간(상세)' },
+    note: { ja:'9コースそれぞれについて、STEP1/STEP2の実時間。', ko:'9코스 각각에 대해 STEP1/STEP2 실시간.' },
+    lias: { ja:'A1・A2 で合意した時間を、各コースに展開', ko:'A1·A2에서 합의한 시간을 각 코스에 전개' },
+    vands: { ja:'', ko:'' } },
+  { id:'D2', catId:'D', status:'pending',
+    q: { ja:'各コースに必要なモデル数', ko:'각 코스에 필요한 모델 수' },
+    note: { ja:'鼻コースは1名、フェイスBTXは2〜3名など。', ko:'코 코스는 1명, 페이스 BTX는 2~3명 등.' },
+    lias: { ja:'Vandsの標準プロトコルに基づき決定', ko:'Vands 표준 프로토콜에 근거하여 결정' },
+    vands: { ja:'', ko:'' } },
+  { id:'D3', catId:'D', status:'pending',
+    q: { ja:'各コースの使用薬剤量（標準）', ko:'각 코스의 사용 약제량(표준)' },
+    note: { ja:'HA量・BTX量・脂肪溶解量など。', ko:'HA량·BTX량·지방 용해량 등.' },
+    lias: { ja:'', ko:'' },
+    vands: { ja:'', ko:'' } },
+  { id:'D4', catId:'D', status:'pending',
+    q: { ja:'各コースの最大受講人数は?', ko:'각 코스의 최대 수강 인원은?' },
+    note: { ja:'STEP1は5名まで、STEP2は3名までなど。', ko:'STEP1은 5명까지, STEP2는 3명까지 등.' },
+    lias: { ja:'STEP1 は3〜5名、STEP2 は2〜3名を想定', ko:'STEP1은 3~5명, STEP2는 2~3명 상정' },
+    vands: { ja:'', ko:'' } },
+
+  // E. VJDN・継続関係
+  { id:'E1', catId:'E', status:'pending',
+    q: { ja:'VJDN 登録要件は?', ko:'VJDN 등록 요건은?' },
+    note: { ja:'STEP1受講済みが必要か、それ以外の条件は?', ko:'STEP1 수강 완료가 필요한지, 그 외 조건은?' },
+    lias: { ja:'STEP1受講 or 同等経験の審査を経て登録', ko:'STEP1 수강 or 동등 경험 심사를 거쳐 등록' },
+    vands: { ja:'', ko:'' } },
+  { id:'E2', catId:'E', status:'pending',
+    q: { ja:'VJDN 年会費の有無は?', ko:'VJDN 연회비 유무는?' },
+    note: { ja:'無料会員か、年会費モデルか。', ko:'무료 회원인지, 연회비 모델인지.' },
+    lias: { ja:'初年度は無料、2年目以降は年会費制を検討', ko:'첫해는 무료, 2년 차 이후 연회비제 검토' },
+    vands: { ja:'', ko:'' } },
+  { id:'E3', catId:'E', status:'pending',
+    q: { ja:'除名・更新ルールは?', ko:'제명·갱신 규칙은?' },
+    note: { ja:'一定期間講習参加なしで休眠など。', ko:'일정 기간 강습 참여 없음 시 휴면 등.' },
+    lias: { ja:'2年間非活動で自動休眠、再活性化可', ko:'2년간 비활동 시 자동 휴면, 재활성화 가능' },
+    vands: { ja:'', ko:'' } },
+  { id:'E4', catId:'E', status:'pending',
+    q: { ja:'Vandsオリジナル薬剤の販売スキームは?', ko:'Vands 오리지널 약제의 판매 스킴은?' },
+    note: { ja:'薬機法対応、輸入、卸価格、会員限定販売。', ko:'약사법 대응, 수입, 도매 가격, 회원 한정 판매.' },
+    lias: { ja:'LIAS が輸入・卸売、VJDN 会員に限定販売', ko:'LIAS가 수입·도매, VJDN 회원에 한정 판매' },
+    vands: { ja:'', ko:'' } },
+  { id:'E5', catId:'E', status:'pending',
+    q: { ja:'会員限定特典の内容は?', ko:'회원 한정 특전 내용은?' },
+    note: { ja:'上位コース優先案内・薬剤割引・継続相談など。', ko:'상위 코스 우선 안내·약제 할인·지속 상담 등.' },
+    lias: { ja:'優先案内、薬剤10%割引、年1回の技術相談枠', ko:'우선 안내, 약제 10% 할인, 연 1회 기술 상담' },
+    vands: { ja:'', ko:'' } },
+
+  // F. ビジネス面
+  { id:'F1', catId:'F', status:'pending',
+    q: { ja:'収益配分の考え方は?', ko:'수익 배분의 사고방식은?' },
+    note: { ja:'講習料の配分比率。STEP1/STEP2/個別で別比率も。', ko:'강습료 배분 비율. STEP1/STEP2/개별로 다른 비율도.' },
+    lias: { ja:'別途協議', ko:'별도 협의' },
+    vands: { ja:'', ko:'' } },
+  { id:'F2', catId:'F', status:'pending',
+    q: { ja:'決済フロー（どちらが受領? 精算サイクル?）', ko:'결제 플로우(어느 쪽이 수령? 정산 주기?)' },
+    note: { ja:'日本円決済・ウォン送金のルート。', ko:'일본엔 결제·원화 송금 루트.' },
+    lias: { ja:'LIAS が日本円で受領、月次精算で Vands へ送金', ko:'LIAS가 일본엔으로 수령, 월별 정산으로 Vands에 송금' },
+    vands: { ja:'', ko:'' } },
+  { id:'F3', catId:'F', status:'pending',
+    q: { ja:'契約形態は?', ko:'계약 형태는?' },
+    note: { ja:'業務委託・共同事業・ライセンス契約など。', ko:'업무 위탁·공동 사업·라이선스 계약 등.' },
+    lias: { ja:'業務提携契約（ライセンス要素含む）', ko:'업무 제휴 계약(라이선스 요소 포함)' },
+    vands: { ja:'', ko:'' } },
+  { id:'F4', catId:'F', status:'pending',
+    q: { ja:'排他的パートナーシップの有無は?', ko:'배타적 파트너십 유무는?' },
+    note: { ja:'LIAS が日本市場での独占パートナーになるか。', ko:'LIAS가 일본 시장에서 독점 파트너가 될지.' },
+    lias: { ja:'日本市場における独占パートナーを希望', ko:'일본 시장에서 독점 파트너 희망' },
+    vands: { ja:'', ko:'' } },
+];
+
+/* ============================================================
+   STATE
+   ============================================================ */
+const STORAGE_KEY = 'vands_lias_academy_v1';
+let CATEGORIES, COURSES, CHECKLIST_CATS, CHECKLIST_ITEMS;
+let currentLang = 'ja';
+let editMode = false;
+let saveTimer = null;
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const data = JSON.parse(raw);
+      CATEGORIES = data.categories || deepClone(INITIAL_CATEGORIES);
+      COURSES = data.courses || deepClone(INITIAL_COURSES);
+      CHECKLIST_CATS = data.checklistCats || deepClone(INITIAL_CHECKLIST_CATS);
+      CHECKLIST_ITEMS = data.checklistItems || deepClone(INITIAL_CHECKLIST_ITEMS);
+      return;
+    }
+  } catch(e) {}
+  CATEGORIES = deepClone(INITIAL_CATEGORIES);
+  COURSES = deepClone(INITIAL_COURSES);
+  CHECKLIST_CATS = deepClone(INITIAL_CHECKLIST_CATS);
+  CHECKLIST_ITEMS = deepClone(INITIAL_CHECKLIST_ITEMS);
+}
+
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      categories: CATEGORIES,
+      courses: COURSES,
+      checklistCats: CHECKLIST_CATS,
+      checklistItems: CHECKLIST_ITEMS,
+    }));
+    markSaved();
+  } catch(e) {}
+}
+
+function scheduleSave() {
+  markSaving();
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveState, 500);
+}
+
+function markSaving() {
+  const dot = document.getElementById('saveDot');
+  if (dot) dot.classList.add('saving');
+  const t = currentLang === 'ko' ? '저장 중…' : '保存中…';
+  const a = document.getElementById('saveText');
+  const b = document.getElementById('saveTextKo');
+  if (a) a.textContent = t;
+  if (b) b.textContent = t;
+}
+function markSaved() {
+  const dot = document.getElementById('saveDot');
+  if (dot) dot.classList.remove('saving');
+  const a = document.getElementById('saveText');
+  const b = document.getElementById('saveTextKo');
+  if (a) a.textContent = '保存済';
+  if (b) b.textContent = '저장됨';
+}
+
+function deepClone(obj) { return JSON.parse(JSON.stringify(obj)); }
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmtPrice = n => n == null ? '—' : '¥' + n.toLocaleString('ja-JP');
+const starsHtml = n => '★'.repeat(n) + '<span class="stars-empty">' + '☆'.repeat(5-n) + '</span>';
+
+/* ============================================================
+   EDIT MODE
+   ============================================================ */
+function toggleEdit() {
+  editMode = !editMode;
+  document.documentElement.setAttribute('data-edit', editMode ? 'on' : 'off');
+  const btn = document.getElementById('editBtn');
+  if (btn) btn.classList.toggle('active', editMode);
+  renderAll();
+}
+
+function resetAllData() {
+  const msg = currentLang === 'ko'
+    ? '모든 금액·코스 정보·확인 사항의 답변을 초기값으로 되돌리시겠습니까?'
+    : 'すべての金額・コース情報・確認事項の回答を初期値に戻しますか？';
+  if (!confirm(msg)) return;
+  CATEGORIES = deepClone(INITIAL_CATEGORIES);
+  COURSES = deepClone(INITIAL_COURSES);
+  CHECKLIST_CATS = deepClone(INITIAL_CHECKLIST_CATS);
+  CHECKLIST_ITEMS = deepClone(INITIAL_CHECKLIST_ITEMS);
+  saveState();
+  renderAll();
+}
+
+function editableText(text, type, id, field) {
+  if (editMode) {
+    return `<span class="editable" contenteditable="true" data-edit-type="${type}" data-edit-id="${id}" data-edit-field="${field}">${esc(text)}</span>`;
+  }
+  return esc(text);
+}
+
+function editablePriceYen(value, courseId, field) {
+  if (editMode) {
+    const display = value == null ? '0' : value.toLocaleString('ja-JP');
+    return `¥<span class="editable editable-price" contenteditable="true" data-edit-type="course-price" data-edit-id="${courseId}" data-edit-field="${field}">${display}</span>`;
+  }
+  return value == null ? '—' : fmtPrice(value);
+}
+
+function editableDifficulty(value, courseId) {
+  if (editMode) {
+    return `<span class="editable" contenteditable="true" data-edit-type="course-diff" data-edit-id="${courseId}" style="display:inline-block; min-width:20px; text-align:center; font-family:var(--font-mono);">${value}</span><span style="color:var(--ink-soft); font-size:11px;">/5</span>`;
+  }
+  return starsHtml(value);
+}
+
+function handleEditBlur(e) {
+  const el = e.target;
+  if (!el.classList || !el.classList.contains('editable')) return;
+  const type = el.dataset.editType;
+  const id = el.dataset.editId;
+  const field = el.dataset.editField;
+  const value = el.textContent.trim();
+
+  if (type === 'course-price') {
+    const c = COURSES.find(x => x.id === id);
+    if (!c) return;
+    if (value === '' || value === '—' || value === '0') {
+      c[field] = null;
+    } else {
+      const num = parseInt(value.replace(/[^\d]/g, ''), 10);
+      c[field] = isNaN(num) ? null : num;
+    }
+    scheduleSave();
+    renderAll();
+  } else if (type === 'course-name') {
+    const c = COURSES.find(x => x.id === id);
+    if (!c) return;
+    c.name[field] = value;
+    scheduleSave();
+    renderAll();
+  } else if (type === 'cat-name') {
+    const cat = CATEGORIES.find(x => x.id === id);
+    if (!cat) return;
+    cat.name[field] = value;
+    scheduleSave();
+    renderAll();
+  } else if (type === 'course-diff') {
+    const c = COURSES.find(x => x.id === id);
+    if (!c) return;
+    const num = parseInt(value, 10);
+    if (!isNaN(num) && num >= 1 && num <= 5) {
+      c.difficulty = num;
+    }
+    scheduleSave();
+    renderAll();
+  } else if (type === 'check-answer') {
+    const item = CHECKLIST_ITEMS.find(x => x.id === id);
+    if (!item) return;
+    if (!item[field]) item[field] = { ja:'', ko:'' };
+    item[field][currentLang] = value;
+    scheduleSave();
+    // 回答のみの変更は再描画不要（そのままで表示されているので）
+  }
+}
+
+function handleEditKeydown(e) {
+  if (e.target.classList && e.target.classList.contains('editable')) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      e.target.blur();
+    }
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      e.target.blur();
+      renderAll();
+    }
+  }
+}
+
+/* ============================================================
+   RENDER: COURSE CARDS (per language)
+   ============================================================ */
+function renderCourseList(lang) {
+  const container = document.getElementById('courseList-' + lang);
+  if (!container) return;
+
+  let html = '';
+  CATEGORIES.forEach(cat => {
+    const courses = COURSES.filter(c => c.catId === cat.id);
+    if (courses.length === 0) return;
+
+    const countLabel = lang === 'ja' ? `${courses.length} コース` : `${courses.length} 코스`;
+
+    html += `
+      <div class="category-group">
+        <div class="category-header">
+          <span class="category-bar cat-${cat.color}"></span>
+          <span class="category-name">${editableText(cat.name[lang], 'cat-name', cat.id, lang)}</span>
+          <span class="category-count">${countLabel}</span>
+        </div>
+        <div class="course-grid">
+          ${courses.map(c => renderCourseCard(c, lang)).join('')}
+        </div>
+      </div>
+    `;
+  });
+  container.innerHTML = html;
+}
+
+function renderCourseCard(c, lang) {
+  const step1Label = 'STEP 1';
+  const step2Label = 'STEP 2';
+  const soloLabel  = lang === 'ja' ? '個別+' : '개별+';
+
+  const vjdnBadge = c.vjdn === 'required'
+    ? `<span class="vjdn-badge vjdn-required">${lang === 'ja' ? 'VJDN必須' : 'VJDN 필수'}</span>`
+    : c.vjdn === 'step2_only'
+    ? `<span class="vjdn-badge vjdn-step2">${lang === 'ja' ? 'STEP2からVJDN' : 'STEP2부터 VJDN'}</span>`
+    : '';
+
+  return `
+    <div class="course-card">
+      <div class="course-card-name">${editableText(c.name[lang], 'course-name', c.id, lang)}</div>
+      <div class="course-stars">${editableDifficulty(c.difficulty, c.id)}</div>
+      <div class="course-prices">
+        <div class="course-price-item step1">
+          <span class="price-label">${step1Label}</span>
+          <span class="price-value ${c.step1 == null && !editMode ? 'dash' : ''}">${editablePriceYen(c.step1, c.id, 'step1')}</span>
+        </div>
+        <div class="course-price-item step2">
+          <span class="price-label">${step2Label}</span>
+          <span class="price-value">${editablePriceYen(c.step2, c.id, 'step2')}</span>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; font-size:11px; color:var(--ink-soft);">
+        <span>${soloLabel} ${editablePriceYen(c.solo, c.id, 'solo')}</span>
+        ${vjdnBadge}
+      </div>
+    </div>
+  `;
+}
+
+/* ============================================================
+   RENDER: PRICING TABLE (per language)
+   ============================================================ */
+function renderPricingTable(lang) {
+  const table = document.getElementById('pricingTable-' + lang);
+  if (!table) return;
+
+  const labels = lang === 'ja'
+    ? { cat:'カテゴリ', course:'コース名', diff:'難易度', s1:'STEP1', s2:'STEP2', solo:'個別+', vjdn:'VJDN' }
+    : { cat:'카테고리', course:'코스명', diff:'난이도', s1:'STEP1', s2:'STEP2', solo:'개별+', vjdn:'VJDN' };
+
+  const vjdnLabel = v => v === 'required' ? (lang === 'ja' ? '必須' : '필수')
+                      : v === 'step2_only' ? (lang === 'ja' ? 'STEP2必須' : 'STEP2 필수')
+                      : '—';
+
+  let html = `
+    <thead>
+      <tr>
+        <th>${labels.cat}</th>
+        <th>${labels.course}</th>
+        <th class="center">${labels.diff}</th>
+        <th class="center th-step1">${labels.s1}</th>
+        <th class="center th-step2">${labels.s2}</th>
+        <th class="center">${labels.solo}</th>
+        <th class="center">${labels.vjdn}</th>
+      </tr>
+    </thead>
+    <tbody>
+  `;
+
+  CATEGORIES.forEach(cat => {
+    const courses = COURSES.filter(c => c.catId === cat.id);
+    courses.forEach((c, idx) => {
+      html += `
+        <tr>
+          ${idx === 0 ? `
+            <td rowspan="${courses.length}" style="background:var(--paper); vertical-align:top;">
+              <span class="category-bar cat-${cat.color}" style="height:32px;"></span>
+              <span style="font-weight:600; font-size:12px;">${editableText(cat.name[lang], 'cat-name', cat.id, lang)}</span>
+            </td>
+          ` : ''}
+          <td><strong>${editableText(c.name[lang], 'course-name', c.id, lang)}</strong></td>
+          <td class="center">${editMode ? editableDifficulty(c.difficulty, c.id) : starsHtml(c.difficulty)}</td>
+          <td class="num">${editablePriceYen(c.step1, c.id, 'step1')}</td>
+          <td class="num" style="color:var(--gold-dark); font-weight:700;">${editablePriceYen(c.step2, c.id, 'step2')}</td>
+          <td class="num" style="color:var(--ink-soft);">+${editablePriceYen(c.solo, c.id, 'solo')}</td>
+          <td class="center" style="font-size:11px; ${c.vjdn === 'required' ? 'color:#B91C1C; font-weight:700;' : 'color:var(--gold-dark);'}">${vjdnLabel(c.vjdn)}</td>
+        </tr>
+      `;
+    });
+  });
+
+  html += '</tbody>';
+  table.innerHTML = html;
+}
+
+/* ============================================================
+   REVENUE SIMULATION (uses live data)
+   ============================================================ */
+function currentAvgPrice() {
+  return {
+    step1: average(COURSES.filter(c => c.step1).map(c => c.step1)),
+    step2: average(COURSES.filter(c => c.step2).map(c => c.step2)),
+    solo:  average(COURSES.filter(c => c.solo).map(c => c.solo)),
+  };
+}
+
+function average(arr) {
+  if (arr.length === 0) return 0;
+  return arr.reduce((a,b) => a+b, 0) / arr.length;
+}
+
+function fmtYenResult(n) {
+  if (n == null || isNaN(n)) return '—';
+  if (n >= 100000000) {
+    return (n / 100000000).toFixed(2).replace(/\.?0+$/, '') + (currentLang === 'ja' ? '億' : '억');
+  }
+  if (n >= 10000) {
+    return (n / 10000).toFixed(0) + (currentLang === 'ja' ? '万' : '만');
+  }
+  return n.toLocaleString('ja-JP');
+}
+
+function updateSim() {
+  const m = document.getElementById('inMonthly');
+  if (!m) return;
+  const monthly = +m.value;
+  const s1 = +document.getElementById('inStep1').value;
+  const s2 = +document.getElementById('inStep2').value;
+  const so = +document.getElementById('inSolo').value;
+
+  document.getElementById('simMonthly').textContent = monthly;
+  document.getElementById('simStep1').textContent = s1;
+  document.getElementById('simStep2').textContent = s2;
+  document.getElementById('simSolo').textContent = so;
+
+  const annualPersons = monthly * 12;
+  document.getElementById('simAnnualPersons').textContent = annualPersons;
+
+  const avg = currentAvgPrice();
+  const revStep1 = Math.round(annualPersons * (s1 / 100) * avg.step1);
+  const revStep2 = Math.round(annualPersons * (s2 / 100) * avg.step2);
+  const revSolo  = Math.round(annualPersons * (so / 100) * (avg.step2 + avg.solo));
+  const total = revStep1 + revStep2 + revSolo;
+
+  document.getElementById('simTotal').textContent = fmtYenResult(total);
+  document.getElementById('simRevStep1').textContent = revStep1.toLocaleString('ja-JP');
+  document.getElementById('simRevStep2').textContent = revStep2.toLocaleString('ja-JP');
+  document.getElementById('simRevSolo').textContent  = revSolo.toLocaleString('ja-JP');
+}
+
+/* ============================================================
+   RENDER: CHECKLIST
+   ============================================================ */
+const CHECKLIST_STATUSES = ['pending','lias','vands','agreed'];
+const STATUS_LABELS = {
+  ja: { pending:'未確認', lias:'LIAS提案中', vands:'Vands回答待', agreed:'合意済' },
+  ko: { pending:'미확인', lias:'LIAS 제안 중', vands:'Vands 답변 대기', agreed:'합의됨' },
+};
+
+function renderChecklistStats() {
+  const stats = document.getElementById('checkStats');
+  if (!stats) return;
+
+  const total = CHECKLIST_ITEMS.length;
+  const counts = { pending:0, lias:0, vands:0, agreed:0 };
+  CHECKLIST_ITEMS.forEach(i => { counts[i.status] = (counts[i.status] || 0) + 1; });
+
+  const labels = currentLang === 'ja'
+    ? { total:'全項目', pending:'未確認', vands:'Vands回答待', agreed:'合意済' }
+    : { total:'전 항목', pending:'미확인', vands:'Vands 답변 대기', agreed:'합의됨' };
+
+  stats.innerHTML = `
+    <div class="checklist-stat">
+      <div class="checklist-stat-num">${total}</div>
+      <div class="checklist-stat-label">${labels.total}</div>
+    </div>
+    <div class="checklist-stat pending">
+      <div class="checklist-stat-num">${counts.pending}</div>
+      <div class="checklist-stat-label">${labels.pending}</div>
+    </div>
+    <div class="checklist-stat vands-wait">
+      <div class="checklist-stat-num">${counts.lias + counts.vands}</div>
+      <div class="checklist-stat-label">${labels.vands}</div>
+    </div>
+    <div class="checklist-stat agreed">
+      <div class="checklist-stat-num">${counts.agreed}</div>
+      <div class="checklist-stat-label">${labels.agreed}</div>
+    </div>
+  `;
+}
+
+function renderChecklistBody() {
+  const body = document.getElementById('checklistBody');
+  if (!body) return;
+
+  const itemLabels = currentLang === 'ja'
+    ? { liasLabel:'LIAS提案', vandsLabel:'Vands回答', emptyLabel:'（未回答）', items:'項目' }
+    : { liasLabel:'LIAS 제안', vandsLabel:'Vands 답변', emptyLabel:'(미답변)', items:'항목' };
+
+  let html = '';
+  CHECKLIST_CATS.forEach(cat => {
+    const items = CHECKLIST_ITEMS.filter(i => i.catId === cat.id);
+    if (items.length === 0) return;
+
+    const agreedCount = items.filter(i => i.status === 'agreed').length;
+
+    html += `
+      <div class="check-cat" data-cat="${cat.id}">
+        <div class="check-cat-header" onclick="toggleCatCollapse('${cat.id}')">
+          <span class="check-cat-id">${cat.id}</span>
+          <span class="check-cat-name">${esc(cat.name[currentLang])}</span>
+          <span class="check-cat-count">${agreedCount} / ${items.length}</span>
+          <span class="check-cat-toggle">▼</span>
+        </div>
+        <div class="check-cat-body">
+          ${items.map(item => renderChecklistItem(item, itemLabels)).join('')}
+        </div>
+      </div>
+    `;
+  });
+  body.innerHTML = html;
+}
+
+function renderChecklistItem(item, labels) {
+  const statusLabel = STATUS_LABELS[currentLang][item.status] || item.status;
+  const statusClass = 'status-' + item.status;
+
+  const liasText = item.lias[currentLang] || '';
+  const vandsText = item.vands[currentLang] || '';
+
+  const liasDisplay = editMode
+    ? `<div class="answer-text" contenteditable="true" data-edit-type="check-answer" data-edit-id="${item.id}" data-edit-field="lias">${esc(liasText)}</div>`
+    : `<div class="answer-text ${liasText ? '' : 'empty'}">${esc(liasText) || labels.emptyLabel}</div>`;
+
+  const vandsDisplay = editMode
+    ? `<div class="answer-text" contenteditable="true" data-edit-type="check-answer" data-edit-id="${item.id}" data-edit-field="vands">${esc(vandsText)}</div>`
+    : `<div class="answer-text ${vandsText ? '' : 'empty'}">${esc(vandsText) || labels.emptyLabel}</div>`;
+
+  const statusControl = editMode
+    ? `<div class="status-selector" data-item-id="${item.id}">
+         ${CHECKLIST_STATUSES.map(s => `
+           <button class="${item.status === s ? 'active' : ''}" data-s="${s}" onclick="setChecklistStatus('${item.id}', '${s}')">${esc(STATUS_LABELS[currentLang][s])}</button>
+         `).join('')}
+       </div>`
+    : `<span class="check-status ${statusClass}"><span class="check-status-dot"></span>${esc(statusLabel)}</span>`;
+
+  return `
+    <div class="check-item" data-item-id="${item.id}">
+      <div>
+        <div class="check-question">${esc(item.id)}. ${esc(item.q[currentLang])}</div>
+        ${item.note[currentLang] ? `<div class="check-note">${esc(item.note[currentLang])}</div>` : ''}
+        <div class="check-answers">
+          <div class="answer-block lias">
+            <div class="answer-label">◆ ${labels.liasLabel}</div>
+            ${liasDisplay}
+          </div>
+          <div class="answer-block vands">
+            <div class="answer-label">◆ ${labels.vandsLabel}</div>
+            ${vandsDisplay}
+          </div>
+        </div>
+      </div>
+      <div class="check-meta">
+        ${statusControl}
+        <span class="check-tag">${esc(item.id)}</span>
+      </div>
+    </div>
+  `;
+}
+
+function toggleCatCollapse(catId) {
+  const el = document.querySelector(`.check-cat[data-cat="${catId}"]`);
+  if (el) el.classList.toggle('collapsed');
+}
+
+function setChecklistStatus(itemId, status) {
+  const item = CHECKLIST_ITEMS.find(x => x.id === itemId);
+  if (!item) return;
+  item.status = status;
+  scheduleSave();
+  renderChecklistStats();
+  renderChecklistBody();
+}
+
+/* ============================================================
+   RENDER ALL
+   ============================================================ */
+function renderAll() {
+  renderCourseList('ja');
+  renderCourseList('ko');
+  renderPricingTable('ja');
+  renderPricingTable('ko');
+  updateSim();
+  renderChecklistStats();
+  renderChecklistBody();
+}
+
+/* ============================================================
+   LANGUAGE SWITCH
+   ============================================================ */
+const LANG_KEY = 'vands_lias_lang';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.setAttribute('data-lang', lang);
+  document.documentElement.setAttribute('lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  try { localStorage.setItem(LANG_KEY, lang); } catch(e){}
+  renderAll();
+}
+
+/* ============================================================
+   TOC HIGHLIGHT ON SCROLL
+   ============================================================ */
+function setupTocHighlight() {
+  const sections = document.querySelectorAll('.section');
+  const navLinks = document.querySelectorAll('.nav-section-link');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.dataset.target === id);
+        });
+      }
+    });
+  }, {
+    rootMargin: '-30% 0px -60% 0px',
+    threshold: 0,
+  });
+
+  sections.forEach(sec => observer.observe(sec));
+}
+
+/* ============================================================
+   BOOT
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  loadState();
+
+  try {
+    const saved = localStorage.getItem(LANG_KEY);
+    if (saved === 'ja' || saved === 'ko') currentLang = saved;
+  } catch(e){}
+
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.addEventListener('click', () => setLang(b.dataset.lang));
+  });
+
+  ['inMonthly','inStep1','inStep2','inSolo'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', updateSim);
+  });
+
+  // Edit mode delegation
+  document.addEventListener('blur', handleEditBlur, true);
+  document.addEventListener('keydown', handleEditKeydown, true);
+
+  setLang(currentLang);
+  setupTocHighlight();
+  markSaved();
+});
+
+window.toggleEdit = toggleEdit;
+window.resetAllData = resetAllData;
+window.toggleCatCollapse = toggleCatCollapse;
+window.setChecklistStatus = setChecklistStatus;
+</script>
+
+</body>
+</html>
