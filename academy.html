@@ -1059,30 +1059,70 @@
 
   /* ============ EDIT MODE ============ */
   .edit-btn {
-    font-size: 12px;
-    padding: 7px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 20px;
     border-radius: 999px;
-    border: 1px solid var(--border);
-    background: white;
-    color: var(--ink-soft);
+    border: none;
+    background: var(--gold);
+    color: white;
     cursor: pointer;
     font-family: inherit;
-    transition: all 0.15s;
+    transition: all 0.2s;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
+    box-shadow: 0 2px 10px rgba(201, 155, 47, 0.35);
+    letter-spacing: 0.02em;
   }
   .edit-btn:hover {
-    border-color: var(--teal);
-    color: var(--teal-dark);
+    background: var(--gold-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(201, 155, 47, 0.45);
+  }
+  .edit-btn-icon {
+    font-size: 15px;
+    line-height: 1;
   }
   .edit-btn.active {
     background: var(--teal);
-    border-color: var(--teal);
-    color: white;
+    box-shadow: 0 2px 10px rgba(14, 148, 136, 0.35);
   }
   .edit-btn.active:hover {
     background: var(--teal-dark);
+    box-shadow: 0 4px 14px rgba(14, 148, 136, 0.45);
+  }
+  .edit-btn .label-on { display: none; }
+  .edit-btn.active .label-off { display: none; }
+  .edit-btn.active .label-on { display: inline; }
+
+  /* Edit hint - 各セクションで編集可能であることを明示 */
+  .edit-hint {
+    background: linear-gradient(135deg, rgba(201, 155, 47, 0.08), rgba(201, 155, 47, 0.03));
+    border: 1px dashed var(--gold);
+    border-radius: 10px;
+    padding: 16px 22px;
+    margin-bottom: 32px;
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--ink-light);
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .edit-hint-icon {
+    font-size: 22px;
+    color: var(--gold-dark);
+    line-height: 1;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .edit-hint strong {
+    color: var(--gold-dark);
+    font-weight: 700;
+  }
+  html[data-edit="on"] .edit-hint {
+    opacity: 0.5;
   }
 
   /* Edit mode banner */
@@ -1214,8 +1254,15 @@
         <span id="saveTextKo" data-lang-only="ko">저장됨</span>
       </div>
       <button class="edit-btn" id="editBtn" onclick="toggleEdit()">
-        <span data-lang-only="ja">✎ 編集</span>
-        <span data-lang-only="ko">✎ 편집</span>
+        <span class="edit-btn-icon">✎</span>
+        <span class="label-off">
+          <span data-lang-only="ja">内容を編集する</span>
+          <span data-lang-only="ko">내용 편집하기</span>
+        </span>
+        <span class="label-on">
+          <span data-lang-only="ja">編集を終了</span>
+          <span data-lang-only="ko">편집 종료</span>
+        </span>
       </button>
       <a href="index.html" class="back-link">
         <span data-lang-only="ja">← 事業紹介に戻る</span>
@@ -1583,8 +1630,15 @@
       <div data-lang-only="ja">
         <h2 class="section-title">料金体系</h2>
         <p class="section-lead">
-          スコアリングに基づいた、全9コースの料金一覧です。STEP1（見学）はエントリー価格、STEP2（実技）は難易度に応じた価格設定。個別1対1指導もオプションで追加可能です。
+          スコアリングに基づいた、全9コースの料金一覧です。STEP1（見学）はエントリー価格、STEP2（実技）は難易度に応じた価格設定としています。
         </p>
+
+        <div class="edit-hint">
+          <span class="edit-hint-icon">✎</span>
+          <span>
+            右上の<strong>「内容を編集する」</strong>ボタンをONにすると、<strong>STEP2の金額をその場で直接編集</strong>できます。Vandsとの協議内容に応じて、いつでも金額を調整可能です。
+          </span>
+        </div>
 
         <div class="pricing-table-wrap">
           <table class="pricing-table" id="pricingTable-ja"></table>
@@ -1601,8 +1655,15 @@
       <div data-lang-only="ko">
         <h2 class="section-title">요금 체계</h2>
         <p class="section-lead">
-          스코어링에 기반한 전 9코스의 요금 일람입니다. STEP1(견학)은 엔트리 가격, STEP2(실기)는 난이도에 따른 가격 설정. 1:1 개별 지도도 옵션으로 추가 가능합니다.
+          스코어링에 기반한 전 9코스의 요금 일람입니다. STEP1(견학)은 엔트리 가격, STEP2(실기)는 난이도에 따른 가격 설정으로 하고 있습니다.
         </p>
+
+        <div class="edit-hint">
+          <span class="edit-hint-icon">✎</span>
+          <span>
+            우측 상단의 <strong>"내용 편집하기"</strong> 버튼을 ON으로 하면, <strong>STEP2 금액을 바로 직접 편집</strong>할 수 있습니다. Vands와의 협의 내용에 따라 언제든 금액을 조정 가능합니다.
+          </span>
+        </div>
 
         <div class="pricing-table-wrap">
           <table class="pricing-table" id="pricingTable-ko"></table>
