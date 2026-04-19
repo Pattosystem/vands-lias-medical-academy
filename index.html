@@ -1,1238 +1,948 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VANDS & LIAS Medical Academy | 韓国美容医療 技術研修プラットフォーム</title>
+<title>Vands × LIAS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Noto+Serif+JP:wght@200;300;400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+JP:wght@500;700&family=Noto+Serif+KR:wght@500;700&display=swap" rel="stylesheet">
 <style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
   :root {
-    --ink: #0d0c0b;
-    --cream: #f5f0e8;
-    --gold: #c9a84c;
-    --gold-light: #e8d5a3;
-    --gold-dim: #8a6f30;
-    --charcoal: #1a1814;
-    --mid: #2e2b25;
-    --mist: #b8b0a0;
-    --rose: #c97b7b;
-    --success: #7ab89a;
+    --font-sans: 'Noto Sans JP', sans-serif;
+    --font-serif: 'Noto Serif JP', serif;
+    --ink: #0E2540;
+    --ink-light: #3A4D6B;
+    --ink-soft: #6B7A94;
+    --paper: #FAFAF7;
+    --paper-dark: #F2F0E9;
+    --border: #E5E3DA;
+    --teal: #0E9488;
+    --teal-dark: #0B766E;
+    --teal-light: #E6F5F3;
+    --gold: #C99B2F;
+    --gold-dark: #A97F22;
+    --gold-light: #FAF2DD;
+  }
+  html[data-lang="ko"] {
+    --font-sans: 'Noto Sans KR', sans-serif;
+    --font-serif: 'Noto Serif KR', serif;
   }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+  html { scroll-behavior: smooth; }
   body {
-    font-family: 'Noto Serif JP', serif;
-    background: var(--ink);
-    color: var(--cream);
-    min-height: 100vh;
-    overflow-x: hidden;
+    font-family: var(--font-sans);
+    font-feature-settings: "palt";
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+  .font-serif { font-family: var(--font-serif); }
+
+  /* Show only current language — absolute separation */
+  html[data-lang="ja"] [data-lang-only="ko"] { display: none !important; }
+  html[data-lang="ko"] [data-lang-only="ja"] { display: none !important; }
+
+  /* ============ HEADER ============ */
+  .header {
+    position: sticky;
+    top: 0;
+    background: rgba(250, 250, 247, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    z-index: 50;
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 18px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .brand {
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+  .brand-x {
+    color: var(--teal);
+    margin: 0 6px;
+    font-weight: 300;
   }
 
-  /* ── NAVIGATION ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 999;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 48px;
-    background: linear-gradient(to bottom, rgba(13,12,11,0.96) 0%, transparent 100%);
-    backdrop-filter: blur(2px);
+  /* Language toggle */
+  .lang-toggle {
+    display: inline-flex;
+    background: var(--paper-dark);
+    border-radius: 999px;
+    padding: 4px;
+    border: 1px solid var(--border);
   }
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px; font-weight: 300; letter-spacing: 0.15em;
-    color: var(--gold);
+  .lang-btn {
+    padding: 7px 18px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    border-radius: 999px;
     cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    background: transparent;
+    font-family: inherit;
   }
-  .nav-logo span { font-style: italic; color: var(--cream); }
-  .nav-links { display: flex; gap: 32px; list-style: none; }
-  .nav-links li a {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px; font-weight: 300; letter-spacing: 0.18em;
-    color: var(--mist); text-decoration: none; text-transform: uppercase;
-    transition: color 0.3s;
-  }
-  .nav-links li a:hover { color: var(--gold); }
-  .nav-cta {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px; font-weight: 400; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--ink);
-    background: var(--gold); border: none;
-    padding: 10px 24px; cursor: pointer; transition: background 0.3s;
-  }
-  .nav-cta:hover { background: var(--gold-light); }
-
-  /* ── PAGES ── */
-  .page { display: none; min-height: 100vh; }
-  .page.active { display: block; }
-
-  /* ── HERO ── */
-  #hero {
-    position: relative; min-height: 100vh;
-    display: flex; align-items: center; justify-content: center;
-    overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 60% 50% at 70% 50%, rgba(201,168,76,0.07) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(201,168,76,0.04) 0%, transparent 60%),
-      linear-gradient(135deg, #0d0c0b 0%, #1a1814 50%, #0d0c0b 100%);
-  }
-  .hero-grid {
-    position: absolute; inset: 0; opacity: 0.04;
-    background-image: linear-gradient(var(--gold) 1px, transparent 1px),
-      linear-gradient(90deg, var(--gold) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
-  .hero-content {
-    position: relative; text-align: center; max-width: 860px; padding: 0 24px;
-    animation: fadeUp 1.2s ease both;
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(32px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .hero-badge {
-    display: inline-block; margin-bottom: 28px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px; font-weight: 300; letter-spacing: 0.3em;
-    color: var(--gold); text-transform: uppercase;
-    border: 1px solid rgba(201,168,76,0.3); padding: 8px 20px;
-  }
-  .hero-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(40px, 6vw, 80px); font-weight: 300; line-height: 1.1;
-    letter-spacing: 0.02em; margin-bottom: 12px;
-  }
-  .hero-title em { font-style: italic; color: var(--gold); }
-  .hero-subtitle-jp {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 14px; font-weight: 200; color: var(--mist);
-    letter-spacing: 0.22em; margin-bottom: 36px;
-  }
-  .hero-desc {
-    font-size: 14px; font-weight: 300; line-height: 2;
-    color: var(--mist); max-width: 560px; margin: 0 auto 48px;
-    letter-spacing: 0.05em;
-  }
-  .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-  .btn-primary {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--ink); background: var(--gold);
-    border: none; padding: 16px 40px; cursor: pointer; transition: all 0.3s;
-  }
-  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
-  .btn-outline {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--cream); background: transparent;
-    border: 1px solid rgba(245,240,232,0.3); padding: 16px 40px;
-    cursor: pointer; transition: all 0.3s;
-  }
-  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-
-  /* ── STATS STRIP ── */
-  .stats-strip {
-    display: flex; justify-content: center; gap: 0;
-    border-top: 1px solid rgba(201,168,76,0.15);
-    border-bottom: 1px solid rgba(201,168,76,0.15);
-    background: rgba(26,24,20,0.8);
-  }
-  .stat-item {
-    padding: 28px 48px; text-align: center;
-    border-right: 1px solid rgba(201,168,76,0.12);
-  }
-  .stat-item:last-child { border-right: none; }
-  .stat-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 36px; font-weight: 300; color: var(--gold);
-  }
-  .stat-label {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px; font-weight: 300; letter-spacing: 0.2em;
-    color: var(--mist); text-transform: uppercase; margin-top: 4px;
+  .lang-btn.active {
+    background: var(--ink);
+    color: white;
+    box-shadow: 0 2px 8px rgba(14, 37, 64, 0.2);
   }
 
-  /* ── SECTION COMMONS ── */
-  section { padding: 96px 48px; }
-  .section-label {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px; font-weight: 300; letter-spacing: 0.3em;
-    color: var(--gold); text-transform: uppercase; margin-bottom: 16px;
+  /* ============ CONTAINER ============ */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 80px 32px 120px;
   }
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(28px, 3.5vw, 48px); font-weight: 300; line-height: 1.2;
+
+  /* ============ HERO ============ */
+  .hero {
+    text-align: center;
+    padding: 60px 0 100px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 100px;
+  }
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--teal);
+    font-weight: 600;
+    text-transform: uppercase;
     margin-bottom: 24px;
   }
-  .section-title em { font-style: italic; color: var(--gold); }
-  .divider {
-    width: 60px; height: 1px; background: var(--gold-dim); margin-bottom: 48px;
+  .hero-title {
+    font-family: var(--font-serif);
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    margin-bottom: 32px;
+  }
+  .hero-sub {
+    font-size: 16px;
+    color: var(--ink-light);
+    line-height: 2;
+    max-width: 620px;
+    margin: 0 auto;
   }
 
-  /* ── TREATMENT CARDS ── */
-  #treatments { background: var(--charcoal); }
-  .treatments-inner { max-width: 1100px; margin: 0 auto; }
-  .treatment-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-  .treatment-card {
-    background: var(--mid); padding: 40px 32px;
-    border: 1px solid rgba(201,168,76,0.08);
-    transition: all 0.4s; cursor: pointer; position: relative; overflow: hidden;
-  }
-  .treatment-card::before {
-    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-    height: 2px; background: var(--gold);
-    transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
-  }
-  .treatment-card:hover { border-color: rgba(201,168,76,0.3); }
-  .treatment-card:hover::before { transform: scaleX(1); }
-  .tc-icon {
-    width: 48px; height: 48px; margin-bottom: 24px;
-    display: flex; align-items: center; justify-content: center;
-    border: 1px solid rgba(201,168,76,0.3); color: var(--gold); font-size: 20px;
-  }
-  .tc-category {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 9px; font-weight: 300; letter-spacing: 0.25em;
-    color: var(--gold-dim); text-transform: uppercase; margin-bottom: 10px;
-  }
-  .tc-title {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 16px; font-weight: 300; line-height: 1.6;
-    margin-bottom: 16px;
-  }
-  .tc-desc {
-    font-size: 12px; font-weight: 200; color: var(--mist); line-height: 1.9;
+  @media (max-width: 640px) {
+    .hero-title { font-size: 28px; }
+    .hero-sub { font-size: 14px; }
   }
 
-  /* ── WORKSHOPS ── */
-  #workshops { background: var(--ink); }
-  .workshops-inner { max-width: 1100px; margin: 0 auto; }
-  .workshop-list { display: flex; flex-direction: column; gap: 2px; }
-  .workshop-item {
-    display: grid; grid-template-columns: 140px 1fr auto;
-    align-items: center; gap: 32px;
-    background: var(--mid); padding: 32px 40px;
-    border: 1px solid rgba(201,168,76,0.08);
-    transition: border-color 0.3s;
+  /* ============ SECTION ============ */
+  .section {
+    margin-bottom: 100px;
   }
-  .workshop-item:hover { border-color: rgba(201,168,76,0.25); }
-  .workshop-date {
-    text-align: center; border-right: 1px solid rgba(201,168,76,0.15); padding-right: 32px;
+  .section-header {
+    margin-bottom: 48px;
+    padding-left: 32px;
+    border-left: 3px solid var(--teal);
   }
-  .wd-month {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase;
-  }
-  .wd-day {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 48px; font-weight: 300; line-height: 1; color: var(--cream);
-  }
-  .wd-year {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px; color: var(--mist); letter-spacing: 0.15em;
-  }
-  .workshop-info { }
-  .wi-tag {
-    display: inline-block; margin-bottom: 8px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--gold); border: 1px solid rgba(201,168,76,0.3); padding: 3px 10px;
-  }
-  .wi-title {
-    font-size: 17px; font-weight: 300; margin-bottom: 8px; line-height: 1.5;
-  }
-  .wi-meta {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px; font-weight: 300; color: var(--mist);
-    display: flex; gap: 20px;
-  }
-  .workshop-action .btn-gold-sm {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--gold); background: transparent;
-    border: 1px solid rgba(201,168,76,0.4);
-    padding: 10px 20px; cursor: pointer; transition: all 0.3s; white-space: nowrap;
-  }
-  .workshop-action .btn-gold-sm:hover { background: var(--gold); color: var(--ink); }
-  .badge-new {
-    background: var(--rose); color: white; font-size: 9px;
-    font-family: 'Montserrat', sans-serif; letter-spacing: 0.15em;
-    padding: 2px 8px; margin-left: 8px; vertical-align: middle;
-  }
-
-  /* ── MODAL OVERLAY ── */
-  .modal-overlay {
-    display: none; position: fixed; inset: 0; z-index: 1000;
-    background: rgba(13,12,11,0.92); backdrop-filter: blur(4px);
-    align-items: center; justify-content: center; padding: 24px;
-  }
-  .modal-overlay.open { display: flex; }
-  .modal-box {
-    background: var(--charcoal); border: 1px solid rgba(201,168,76,0.2);
-    max-width: 680px; width: 100%; max-height: 90vh; overflow-y: auto;
-    animation: modalIn 0.35s ease both;
-    scrollbar-width: thin; scrollbar-color: var(--gold-dim) var(--mid);
-  }
-  @keyframes modalIn {
-    from { opacity: 0; transform: scale(0.96) translateY(16px); }
-    to   { opacity: 1; transform: scale(1) translateY(0); }
-  }
-  .modal-header {
-    padding: 36px 40px 28px;
-    border-bottom: 1px solid rgba(201,168,76,0.12);
-    display: flex; align-items: flex-start; justify-content: space-between;
-  }
-  .modal-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px; font-weight: 300;
-  }
-  .modal-title em { color: var(--gold); font-style: italic; }
-  .modal-subtitle {
-    font-size: 12px; font-weight: 200; color: var(--mist);
-    margin-top: 6px; letter-spacing: 0.05em; line-height: 1.7;
-  }
-  .modal-close {
-    background: none; border: none; color: var(--mist);
-    font-size: 24px; cursor: pointer; line-height: 1;
-    transition: color 0.2s; padding: 0 0 0 16px; flex-shrink: 0;
-  }
-  .modal-close:hover { color: var(--cream); }
-  .modal-body { padding: 32px 40px 40px; }
-
-  /* ── FORMS ── */
-  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .form-group { display: flex; flex-direction: column; gap: 8px; }
-  .form-group.full { grid-column: 1 / -1; }
-  .form-label {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px; font-weight: 400; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--mist);
-  }
-  .form-label span { color: var(--rose); }
-  .form-input, .form-select, .form-textarea {
-    background: var(--mid); border: 1px solid rgba(201,168,76,0.15);
-    color: var(--cream); font-family: 'Noto Serif JP', serif;
-    font-size: 14px; font-weight: 200; padding: 13px 16px;
-    outline: none; transition: border-color 0.3s; width: 100%;
-  }
-  .form-input::placeholder { color: rgba(184,176,160,0.4); }
-  .form-input:focus, .form-select:focus, .form-textarea:focus {
-    border-color: var(--gold);
-  }
-  .form-select { appearance: none; cursor: pointer; }
-  .form-textarea { resize: vertical; min-height: 100px; }
-  .form-divider {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 15px; font-weight: 300; color: var(--gold);
-    font-style: italic; grid-column: 1 / -1;
-    padding: 8px 0 0; border-top: 1px solid rgba(201,168,76,0.1);
-  }
-
-  /* Treatment checkboxes */
-  .treatment-checks {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 8px; grid-column: 1 / -1;
-  }
-  .check-item {
-    display: flex; align-items: center; gap: 10px;
-    padding: 10px 14px; border: 1px solid rgba(201,168,76,0.1);
-    cursor: pointer; transition: all 0.2s;
-    font-size: 12px; font-weight: 300; color: var(--mist);
-  }
-  .check-item:hover { border-color: rgba(201,168,76,0.3); color: var(--cream); }
-  .check-item.selected {
-    border-color: var(--gold); color: var(--cream);
-    background: rgba(201,168,76,0.06);
-  }
-  .check-item .chk {
-    width: 16px; height: 16px; border: 1px solid rgba(201,168,76,0.4);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; font-size: 10px; color: var(--gold);
-    transition: background 0.2s;
-  }
-  .check-item.selected .chk { background: var(--gold); color: var(--ink); }
-
-  .form-submit {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px; font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--ink); background: var(--gold);
-    border: none; padding: 16px 0; width: 100%; cursor: pointer;
-    margin-top: 8px; transition: background 0.3s;
-  }
-  .form-submit:hover { background: var(--gold-light); }
-
-  /* ── SUCCESS STATE ── */
-  .success-panel {
-    text-align: center; padding: 48px 0;
-  }
-  .success-icon {
-    width: 64px; height: 64px; border: 1px solid var(--gold);
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 24px; font-size: 28px; color: var(--gold);
-  }
-  .success-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px; font-weight: 300; color: var(--gold);
+  .section-number {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--teal);
+    font-weight: 700;
+    text-transform: uppercase;
     margin-bottom: 12px;
   }
-  .success-msg {
-    font-size: 13px; font-weight: 200; color: var(--mist);
-    line-height: 2; max-width: 400px; margin: 0 auto;
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.4;
+    letter-spacing: -0.005em;
+  }
+  .section-body {
+    font-size: 15.5px;
+    color: var(--ink-light);
+    line-height: 2.1;
+  }
+  .section-body p {
+    margin-bottom: 20px;
+  }
+  .section-body p:last-child { margin-bottom: 0; }
+
+  @media (max-width: 640px) {
+    .section-title { font-size: 22px; }
+    .section-header { padding-left: 20px; }
   }
 
-  /* ── DASHBOARD ── */
-  #dashboard { background: var(--ink); padding: 120px 48px 80px; min-height: 100vh; }
-  .dashboard-inner { max-width: 1100px; margin: 0 auto; }
-  .dash-header {
-    display: flex; align-items: flex-end; justify-content: space-between;
-    margin-bottom: 48px; padding-bottom: 24px;
-    border-bottom: 1px solid rgba(201,168,76,0.15);
+  /* ============ TWO COLUMN (mutual benefit) ============ */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 16px;
   }
-  .dash-greeting {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 12px; font-weight: 300; color: var(--gold);
-    letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 8px;
+  .benefit-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
   }
-  .dash-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 36px; font-weight: 300;
+  .benefit-card.doctors {
+    border-top: 4px solid var(--gold);
   }
-  .dash-name em { color: var(--gold); font-style: italic; }
-  .dash-tabs {
-    display: flex; gap: 0; margin-bottom: 40px;
-    border-bottom: 1px solid rgba(201,168,76,0.12);
+  .benefit-card.vands {
+    border-top: 4px solid var(--teal);
   }
-  .dash-tab {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--mist); background: none; border: none;
-    padding: 14px 28px; cursor: pointer; border-bottom: 2px solid transparent;
-    margin-bottom: -1px; transition: all 0.3s;
+  .benefit-label {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--ink-soft);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 12px;
   }
-  .dash-tab:hover { color: var(--cream); }
-  .dash-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
-  .tab-panel { display: none; }
-  .tab-panel.active { display: block; }
-
-  /* Request cards */
-  .req-card {
-    background: var(--mid); border: 1px solid rgba(201,168,76,0.1);
-    padding: 28px 32px; margin-bottom: 2px; display: grid;
-    grid-template-columns: 1fr auto; gap: 16px; align-items: center;
+  .benefit-card.doctors .benefit-label { color: var(--gold-dark); }
+  .benefit-card.vands .benefit-label { color: var(--teal-dark); }
+  .benefit-title {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 16px;
+    line-height: 1.4;
   }
-  .rc-title { font-size: 16px; font-weight: 300; margin-bottom: 6px; }
-  .rc-meta {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px; font-weight: 300; color: var(--mist); display: flex; gap: 16px;
-  }
-  .rc-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
-  .rc-tag {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--gold-dim); border: 1px solid rgba(201,168,76,0.2);
-    padding: 3px 9px;
-  }
-  .status-badge {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
-    padding: 6px 14px; white-space: nowrap;
-  }
-  .status-pending { background: rgba(201,168,76,0.12); color: var(--gold); }
-  .status-confirmed { background: rgba(122,184,154,0.12); color: var(--success); }
-  .status-review { background: rgba(201,120,120,0.12); color: var(--rose); }
-
-  /* Admin request summary */
-  .admin-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 32px; }
-  .admin-kpi {
-    background: var(--mid); padding: 28px 32px;
-    border: 1px solid rgba(201,168,76,0.1);
-  }
-  .kpi-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 44px; font-weight: 300; color: var(--gold);
-  }
-  .kpi-label {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px; font-weight: 300; letter-spacing: 0.2em;
-    color: var(--mist); text-transform: uppercase;
-  }
-  .demand-bar { margin-bottom: 16px; }
-  .demand-bar-label {
-    display: flex; justify-content: space-between;
-    font-size: 12px; font-weight: 300; margin-bottom: 6px; color: var(--mist);
-  }
-  .demand-bar-label span { color: var(--gold); font-family: 'Montserrat', sans-serif; font-size: 11px; }
-  .demand-bar-track {
-    height: 3px; background: rgba(201,168,76,0.12);
-  }
-  .demand-bar-fill {
-    height: 3px; background: var(--gold); transition: width 0.6s ease;
+  .benefit-desc {
+    font-size: 14px;
+    color: var(--ink-light);
+    line-height: 1.9;
   }
 
-  /* Member list */
-  .member-row {
-    display: grid; grid-template-columns: 40px 1fr 160px 140px 120px;
-    align-items: center; gap: 20px; padding: 18px 24px;
-    background: var(--mid); border: 1px solid rgba(201,168,76,0.08);
-    margin-bottom: 2px; font-size: 13px; font-weight: 300;
-  }
-  .member-row.header {
-    background: transparent; border: none; padding: 0 24px 12px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 9px; letter-spacing: 0.2em; color: var(--mist); text-transform: uppercase;
-    border-bottom: 1px solid rgba(201,168,76,0.12); margin-bottom: 8px;
-  }
-  .member-avatar {
-    width: 36px; height: 36px; border-radius: 50%;
-    background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Cormorant Garamond', serif; font-size: 14px; color: var(--gold);
+  @media (max-width: 640px) {
+    .two-col { grid-template-columns: 1fr; }
+    .benefit-title { font-size: 18px; }
   }
 
-  /* Announce panel */
-  .announce-form-box {
-    background: var(--mid); border: 1px solid rgba(201,168,76,0.15);
-    padding: 36px; margin-bottom: 32px;
+  /* ============ APPROACH CARDS ============ */
+  .approach-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 16px;
+    margin-bottom: 56px;
   }
-  .announce-form-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px; font-weight: 300; margin-bottom: 24px;
-    color: var(--gold); font-style: italic;
+  .approach-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 36px 32px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .approach-card.type-a {
+    border-top: 4px solid var(--teal);
+  }
+  .approach-card.type-b {
+    border-top: 4px solid var(--gold);
+  }
+  .approach-num {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    font-family: var(--font-serif);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--border);
+    line-height: 1;
+  }
+  .approach-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-bottom: 18px;
+  }
+  .approach-card.type-a .approach-tag {
+    background: var(--teal-light);
+    color: var(--teal-dark);
+  }
+  .approach-card.type-b .approach-tag {
+    background: var(--gold-light);
+    color: var(--gold-dark);
+  }
+  .approach-title {
+    font-family: var(--font-serif);
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.45;
+    margin-bottom: 14px;
+  }
+  .approach-for {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px dashed var(--border);
+  }
+  .approach-for strong {
+    color: var(--ink-light);
+  }
+  .approach-desc {
+    font-size: 14px;
+    color: var(--ink-light);
+    line-height: 1.9;
+    margin-bottom: 18px;
+  }
+  .approach-examples {
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+  .approach-examples-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--ink-soft);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .approach-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .approach-pill {
+    font-size: 12px;
+    padding: 4px 10px;
+    background: var(--paper-dark);
+    color: var(--ink-light);
+    border-radius: 20px;
+    border: 1px solid var(--border);
   }
 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--charcoal); padding: 48px;
-    border-top: 1px solid rgba(201,168,76,0.12);
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 24px;
+  @media (max-width: 640px) {
+    .approach-grid { grid-template-columns: 1fr; }
+    .approach-title { font-size: 18px; }
+  }
+
+  /* ============ STEP FLOW ============ */
+  .steps-heading {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 24px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .steps {
+    position: relative;
+    padding-left: 40px;
+    margin-top: 16px;
+  }
+  .steps::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--teal), var(--gold));
+  }
+  .step-item {
+    position: relative;
+    padding-bottom: 36px;
+  }
+  .step-item:last-child { padding-bottom: 0; }
+  .step-marker {
+    position: absolute;
+    left: -40px;
+    top: 2px;
+    width: 32px;
+    height: 32px;
+    background: white;
+    border: 2px solid var(--teal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--teal);
+  }
+  .step-item:nth-child(2) .step-marker { border-color: var(--teal-dark); color: var(--teal-dark); }
+  .step-item:nth-child(3) .step-marker { border-color: var(--gold); color: var(--gold-dark); }
+  .step-title {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .step-desc {
+    font-size: 14px;
+    color: var(--ink-light);
+    line-height: 1.9;
+  }
+
+  /* ============ CLOSING ============ */
+  .closing {
+    background: var(--ink);
+    color: white;
+    padding: 60px 48px;
+    border-radius: 12px;
+    margin-top: 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .closing::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(14, 148, 136, 0.2), transparent 70%);
+    border-radius: 50%;
+  }
+  .closing::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(201, 155, 47, 0.15), transparent 70%);
+    border-radius: 50%;
+  }
+  .closing-label {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--teal);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .closing-text {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.7;
+    position: relative;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 640px) {
+    .closing { padding: 40px 24px; }
+    .closing-text { font-size: 18px; }
+  }
+
+  /* ============ CLOSING CTA ============ */
+  .closing-cta {
+    margin-top: 40px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 36px;
+    background: var(--teal);
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 999px;
+    transition: all 0.25s;
+    box-shadow: 0 4px 20px rgba(14, 148, 136, 0.3);
+  }
+  .cta-button:hover {
+    background: var(--teal-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(14, 148, 136, 0.45);
+  }
+  .cta-arrow {
+    font-size: 18px;
+    transition: transform 0.2s;
+  }
+  .cta-button:hover .cta-arrow { transform: translateX(4px); }
+
+  /* ============ FOOTER ============ */
+  .footer {
+    text-align: center;
+    padding: 40px 32px 60px;
+    color: var(--ink-soft);
+    font-size: 12px;
+    border-top: 1px solid var(--border);
   }
   .footer-brand {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px; font-weight: 300; color: var(--gold);
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
   }
-  .footer-brand em { color: var(--cream); font-style: italic; }
-  .footer-links {
-    display: flex; gap: 24px; list-style: none;
-  }
-  .footer-links li a {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px; font-weight: 300; letter-spacing: 0.2em;
-    color: var(--mist); text-decoration: none; text-transform: uppercase;
-  }
-  .footer-note {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px; font-weight: 200; color: var(--mist);
-    letter-spacing: 0.1em;
-  }
-
-  /* ── TABS on main ── */
-  .main-tabs {
-    display: flex; justify-content: center; gap: 2px;
-    margin: -1px 0 0; padding: 0 48px;
-    background: var(--charcoal);
-    border-bottom: 1px solid rgba(201,168,76,0.12);
-  }
-  .main-tab-btn {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px; font-weight: 300; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--mist); background: none; border: none;
-    padding: 18px 32px; cursor: pointer; border-bottom: 2px solid transparent;
-    margin-bottom: -1px; transition: all 0.3s;
-  }
-  .main-tab-btn:hover { color: var(--gold); }
-  .main-tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
-
-  /* Scrollbar */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--mid); }
-  ::-webkit-scrollbar-thumb { background: var(--gold-dim); }
 </style>
 </head>
 <body>
 
-<!-- ── NAVIGATION ── -->
-<nav>
-  <div class="nav-logo" onclick="showPage('home')">VANDS & LIAS <span>Medical Academy</span></div>
-  <ul class="nav-links">
-    <li><a href="#" onclick="showPage('home');scrollToSection('treatments')">施術カテゴリ</a></li>
-    <li><a href="#" onclick="showPage('home');scrollToSection('workshops')">開催予定</a></li>
-    <li><a href="#" onclick="showPage('dashboard')">マイページ</a></li>
-    <li><a href="#" onclick="openModal('login')">ログイン</a></li>
-  </ul>
-  <button class="nav-cta" onclick="openModal('register')">会員登録</button>
-</nav>
-
-<!-- ════════════════════════════════════ HOME ════════════════════════════════════ -->
-<div id="home" class="page active">
-
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-grid"></div>
-    <div class="hero-content">
-      <div class="hero-badge">Korea · Beauty Medical · Education Platform</div>
-      <h1 class="hero-title">韓国美容医療の<em>最前線</em>を、<br>あなたのクリニックへ。</h1>
-      <p class="hero-subtitle-jp">VANDS & LIAS MEDICAL ACADEMY</p>
-      <p class="hero-desc">
-        ソウル・Vandsクリニックの医師が持つ最高水準の技術を、<br>
-        日本の医師のニーズに合わせたプログラムでお届けします。<br>
-        会員登録して、学びたい施術のリクエストをお寄せください。
-      </p>
-      <div class="hero-actions">
-        <button class="btn-primary" onclick="openModal('register')">無料会員登録</button>
-        <button class="btn-outline" onclick="openModal('request')">施術リクエストを送る</button>
+<!-- ================ HEADER ================ -->
+<header class="header">
+  <div class="header-inner">
+    <div class="brand">Vands Clinic <span class="brand-x">×</span> LIAS</div>
+    <div style="display:flex; align-items:center; gap:14px;">
+      <a href="academy.html" style="font-size:12px; color:white; text-decoration:none; padding:9px 18px; border-radius:999px; background:var(--ink); transition:all 0.2s; font-weight:500; display:inline-flex; align-items:center; gap:6px;" onmouseover="this.style.background='var(--teal-dark)';" onmouseout="this.style.background='var(--ink)';">
+        <span data-lang-only="ja">アカデミー詳細を見る →</span>
+        <span data-lang-only="ko">아카데미 상세 보기 →</span>
+      </a>
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="ja">日本語</button>
+        <button class="lang-btn" data-lang="ko">한국어</button>
       </div>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <div class="stats-strip">
-    <div class="stat-item">
-      <div class="stat-num">〇〇年</div>
-      <div class="stat-label">韓国美容医療実績</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">〇〇人</div>
-      <div class="stat-label">在籍医師人数</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">〇〇＋</div>
-      <div class="stat-label">施術プログラム</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">〇〇人</div>
-      <div class="stat-label">年間来院患者数</div>
     </div>
   </div>
+</header>
 
-  <!-- TREATMENT CATEGORIES -->
-  <section id="treatments">
-    <div class="treatments-inner">
-      <div class="section-label">Treatment Categories</div>
-      <h2 class="section-title">リクエスト可能な<br><em>施術カテゴリ</em></h2>
-      <div class="divider"></div>
-      <div class="treatment-grid">
+<!-- ================ JAPANESE VERSION ================ -->
+<div data-lang-only="ja">
+  <div class="container">
 
-        <div class="treatment-card" onclick="openModal('request')">
-          <div class="tc-icon">💉</div>
-          <div class="tc-category">Hyaluronic Acid</div>
-          <div class="tc-title">ヒアルロン酸注入<br>鼻・鼻翼形成</div>
-          <div class="tc-desc">韓国式鼻ヒアルロン酸注入の技術を習得。自然な高さと形を実現するベクター注入法を指導します。</div>
-        </div>
-
-        <div class="treatment-card" onclick="openModal('request')">
-          <div class="tc-icon">✦</div>
-          <div class="tc-category">Hyaluronic Acid</div>
-          <div class="tc-title">ヒアルロン酸注入<br>ほうれい線・口元</div>
-          <div class="tc-desc">深いほうれい線から浅い皺まで、部位に応じた製剤選択と注入層の判断基準を体系的に習得。</div>
-        </div>
-
-        <div class="treatment-card" onclick="openModal('request')">
-          <div class="tc-icon">◈</div>
-          <div class="tc-category">Botox</div>
-          <div class="tc-title">ボトックス<br>ネックリフト・首筋</div>
-          <div class="tc-desc">首のバンド（広頸筋）へのボトックスによる非侵襲的リフトアップ。解剖学的アプローチから実践まで。</div>
-        </div>
-
-        <div class="treatment-card" onclick="openModal('request')">
-          <div class="tc-icon">◉</div>
-          <div class="tc-category">Botox / Filler</div>
-          <div class="tc-title">顔面輪郭注射<br>小顔・エラ・顎</div>
-          <div class="tc-desc">エラへのボトックスと顎先へのフィラーを組み合わせた総合的な顔面輪郭形成術。</div>
-        </div>
-
-        <div class="treatment-card" onclick="openModal('request')">
-          <div class="tc-icon">⬡</div>
-          <div class="tc-category">Thread Lifting</div>
-          <div class="tc-title">スレッドリフト<br>糸リフト最新技術</div>
-          <div class="tc-desc">韓国発の溶ける糸リフト技術を習得。コグの選択から挿入ベクターの設計まで高度な実践的指導。</div>
-        </div>
-
-        <div class="treatment-card" onclick="openModal('request')">
-          <div class="tc-icon">✧</div>
-          <div class="tc-category">Skin / Other</div>
-          <div class="tc-title">スキン・その他<br>カスタムリクエスト</div>
-          <div class="tc-desc">上記に該当しない施術についてはカスタムリクエストを受け付けています。ご希望をお聞かせください。</div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- UPCOMING WORKSHOPS -->
-  <section id="workshops" style="background:var(--charcoal);">
-    <div class="workshops-inner">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:48px;">
-        <div>
-          <div class="section-label">Upcoming Workshops</div>
-          <h2 class="section-title">開催予定の<em>研修プログラム</em></h2>
-          <div class="divider" style="margin-bottom:0;"></div>
-        </div>
-        <button class="btn-outline" onclick="openModal('request')" style="margin-top:8px;">リクエストを送る →</button>
-      </div>
-
-      <div class="workshop-list">
-
-        <div class="workshop-item">
-          <div class="workshop-date">
-            <div class="wd-month">Jul</div>
-            <div class="wd-day">12</div>
-            <div class="wd-year">2025</div>
-          </div>
-          <div class="workshop-info">
-            <div class="wi-tag">ヒアルロン酸注入</div>
-            <div class="wi-title">鼻ヒアルロン酸 集中マスタークラス<span class="badge-new">NEW</span></div>
-            <div class="wi-meta">
-              <span>📍 ソウル Vandsクリニック</span>
-              <span>👥 定員 6名</span>
-              <span>⏱ 1日間</span>
-            </div>
-          </div>
-          <div class="workshop-action">
-            <button class="btn-gold-sm" onclick="openModal('register')">参加申込</button>
-          </div>
-        </div>
-
-        <div class="workshop-item">
-          <div class="workshop-date">
-            <div class="wd-month">Aug</div>
-            <div class="wd-day">03</div>
-            <div class="wd-year">2025</div>
-          </div>
-          <div class="workshop-info">
-            <div class="wi-tag">ボトックス</div>
-            <div class="wi-title">ネックリフト・広頸筋ボトックス 解剖学セミナー</div>
-            <div class="wi-meta">
-              <span>📍 ソウル Vandsクリニック</span>
-              <span>👥 定員 8名</span>
-              <span>⏱ 1日間</span>
-            </div>
-          </div>
-          <div class="workshop-action">
-            <button class="btn-gold-sm" onclick="openModal('register')">参加申込</button>
-          </div>
-        </div>
-
-        <div class="workshop-item">
-          <div class="workshop-date">
-            <div class="wd-month">Sep</div>
-            <div class="wd-day">20</div>
-            <div class="wd-year">2025</div>
-          </div>
-          <div class="workshop-info">
-            <div class="wi-tag">スレッドリフト</div>
-            <div class="wi-title">糸リフト 2日間集中プログラム ─ 応用編</div>
-            <div class="wi-meta">
-              <span>📍 ソウル Vandsクリニック</span>
-              <span>👥 定員 4名</span>
-              <span>⏱ 2日間</span>
-            </div>
-          </div>
-          <div class="workshop-action">
-            <button class="btn-gold-sm" onclick="openModal('register')">参加申込</button>
-          </div>
-        </div>
-
-        <div class="workshop-item">
-          <div class="workshop-date">
-            <div class="wd-month">Oct</div>
-            <div class="wd-day">08</div>
-            <div class="wd-year">2025</div>
-          </div>
-          <div class="workshop-info">
-            <div class="wi-tag">総合プログラム</div>
-            <div class="wi-title">フェイスコントゥーリング マスタークラス（ヒアルロン酸 + ボトックス）</div>
-            <div class="wi-meta">
-              <span>📍 ソウル Vandsクリニック</span>
-              <span>👥 定員 6名</span>
-              <span>⏱ 2日間</span>
-            </div>
-          </div>
-          <div class="workshop-action">
-            <button class="btn-gold-sm" onclick="openModal('register')">参加申込</button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-brand">VANDS & LIAS <em>Medical Academy</em></div>
-    <ul class="footer-links">
-      <li><a href="#">プライバシーポリシー</a></li>
-      <li><a href="#">利用規約</a></li>
-      <li><a href="#">お問い合わせ</a></li>
-    </ul>
-    <div class="footer-note">© 2025 Vands Clinic. All rights reserved. Seoul, Korea.</div>
-  </footer>
-</div>
-
-<!-- ════════════════════════════════════ DASHBOARD ════════════════════════════════════ -->
-<div id="dashboard" class="page">
-  <div id="dashboard">
-  <div class="dashboard-inner">
-    <div class="dash-header">
-      <div>
-        <div class="dash-greeting">Welcome back</div>
-        <div class="dash-name">田中 <em>先生</em> のマイページ</div>
-      </div>
-      <button class="btn-outline" onclick="openModal('request')">＋ 新しいリクエスト</button>
-    </div>
-
-    <!-- View toggle -->
-    <div class="dash-tabs">
-      <button class="dash-tab active" onclick="switchDashTab('member',this)">メンバービュー</button>
-      <button class="dash-tab" onclick="switchDashTab('admin',this)">管理者ビュー（Vands）</button>
-    </div>
-
-    <!-- MEMBER TAB -->
-    <div id="tab-member" class="tab-panel active">
-      <div class="dash-tabs" style="margin-bottom:28px;border-bottom:1px solid rgba(201,168,76,0.08);">
-        <button class="dash-tab active" onclick="switchInnerTab('my-requests','member-sub',this)">私のリクエスト</button>
-        <button class="dash-tab" onclick="switchInnerTab('upcoming-ws','member-sub',this)">開催予定・申込中</button>
-      </div>
-
-      <div id="my-requests" class="tab-panel active">
-        <div class="req-card">
-          <div>
-            <div class="rc-title">鼻ヒアルロン酸注入マスタークラス</div>
-            <div class="rc-meta"><span>送信日：2025.06.15</span><span>優先度：高</span></div>
-            <div class="rc-tags">
-              <span class="rc-tag">ヒアルロン酸</span>
-              <span class="rc-tag">鼻・鼻翼</span>
-              <span class="rc-tag">平日希望</span>
-            </div>
-          </div>
-          <div class="status-badge status-confirmed">開催確定</div>
-        </div>
-        <div class="req-card">
-          <div>
-            <div class="rc-title">ほうれい線へのヒアルロン酸注入 ─ 少人数セッション</div>
-            <div class="rc-meta"><span>送信日：2025.06.28</span><span>優先度：中</span></div>
-            <div class="rc-tags">
-              <span class="rc-tag">ヒアルロン酸</span>
-              <span class="rc-tag">ほうれい線</span>
-            </div>
-          </div>
-          <div class="status-badge status-pending">審査中</div>
-        </div>
-        <div class="req-card">
-          <div>
-            <div class="rc-title">糸リフト ベクター設計とコグ選択</div>
-            <div class="rc-meta"><span>送信日：2025.07.01</span><span>優先度：低</span></div>
-            <div class="rc-tags">
-              <span class="rc-tag">スレッドリフト</span>
-            </div>
-          </div>
-          <div class="status-badge status-pending">審査中</div>
-        </div>
-      </div>
-
-      <div id="upcoming-ws" class="tab-panel">
-        <div class="req-card">
-          <div>
-            <div class="rc-title">鼻ヒアルロン酸 集中マスタークラス</div>
-            <div class="rc-meta"><span>開催日：2025.07.12</span><span>📍 ソウル Vandsクリニック</span><span>定員 6名</span></div>
-            <div class="rc-tags"><span class="rc-tag">ヒアルロン酸注入</span></div>
-          </div>
-          <div class="status-badge status-confirmed">申込済</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ADMIN TAB -->
-    <div id="tab-admin" class="tab-panel">
-      <div class="admin-grid">
-        <div class="admin-kpi">
-          <div class="kpi-num">142</div>
-          <div class="kpi-label">登録会員数</div>
-        </div>
-        <div class="admin-kpi">
-          <div class="kpi-num">38</div>
-          <div class="kpi-label">未対応リクエスト</div>
-        </div>
-        <div class="admin-kpi">
-          <div class="kpi-num">4</div>
-          <div class="kpi-label">今後の開催予定</div>
-        </div>
-      </div>
-
-      <!-- Demand ranking -->
-      <div style="background:var(--mid);border:1px solid rgba(201,168,76,0.1);padding:32px;margin-bottom:24px;">
-        <div class="section-label" style="margin-bottom:20px;">Demand Ranking</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;margin-bottom:24px;">施術リクエスト需要ランキング</div>
-        <div class="demand-bar"><div class="demand-bar-label"><span>鼻ヒアルロン酸注入</span><span>41%</span></div><div class="demand-bar-track"><div class="demand-bar-fill" style="width:41%"></div></div></div>
-        <div class="demand-bar"><div class="demand-bar-label"><span>ボトックス ネックリフト</span><span>27%</span></div><div class="demand-bar-track"><div class="demand-bar-fill" style="width:27%"></div></div></div>
-        <div class="demand-bar"><div class="demand-bar-label"><span>ほうれい線ヒアルロン酸</span><span>18%</span></div><div class="demand-bar-track"><div class="demand-bar-fill" style="width:18%"></div></div></div>
-        <div class="demand-bar"><div class="demand-bar-label"><span>糸リフト</span><span>9%</span></div><div class="demand-bar-track"><div class="demand-bar-fill" style="width:9%"></div></div></div>
-        <div class="demand-bar"><div class="demand-bar-label"><span>顔面輪郭・その他</span><span>5%</span></div><div class="demand-bar-track"><div class="demand-bar-fill" style="width:5%"></div></div></div>
-      </div>
-
-      <!-- Announce form -->
-      <div class="announce-form-box">
-        <div class="announce-form-title">新規ワークショップを告知する</div>
-        <div class="form-grid">
-          <div class="form-group">
-            <div class="form-label">施術カテゴリ <span>*</span></div>
-            <select class="form-select"><option>ヒアルロン酸注入 ─ 鼻</option><option>ヒアルロン酸注入 ─ ほうれい線</option><option>ボトックス ネックリフト</option><option>スレッドリフト</option><option>顔面輪郭</option><option>その他</option></select>
-          </div>
-          <div class="form-group">
-            <div class="form-label">開催日 <span>*</span></div>
-            <input type="date" class="form-input">
-          </div>
-          <div class="form-group full">
-            <div class="form-label">ワークショップ名 <span>*</span></div>
-            <input type="text" class="form-input" placeholder="例：鼻ヒアルロン酸 集中マスタークラス">
-          </div>
-          <div class="form-group">
-            <div class="form-label">定員</div>
-            <input type="number" class="form-input" placeholder="6" min="1" max="20">
-          </div>
-          <div class="form-group">
-            <div class="form-label">所要日数</div>
-            <select class="form-select"><option>1日間</option><option>2日間</option><option>3日間以上</option></select>
-          </div>
-          <div class="form-group full">
-            <div class="form-label">プログラム詳細</div>
-            <textarea class="form-textarea" placeholder="内容、対象レベル、持参物など..."></textarea>
-          </div>
-        </div>
-        <button class="form-submit" style="margin-top:20px;" onclick="showToast('ワークショップを告知しました。会員にメール通知されます。')">告知を公開する</button>
-      </div>
-
-      <!-- Member list -->
-      <div class="section-label" style="margin-bottom:16px;">Member List</div>
-      <div class="member-row header">
-        <div>#</div><div>氏名 / クリニック</div><div>専門領域</div><div>登録日</div><div>ステータス</div>
-      </div>
-      <div class="member-row">
-        <div style="color:var(--mist);font-size:12px;">01</div>
-        <div><div style="font-size:14px;">田中 美智子</div><div style="font-size:11px;color:var(--mist);">田中美容クリニック・東京</div></div>
-        <div><span class="rc-tag">ヒアルロン酸</span></div>
-        <div style="font-size:12px;color:var(--mist);">2025.06.10</div>
-        <div><span class="status-badge status-confirmed">認証済</span></div>
-      </div>
-      <div class="member-row">
-        <div style="color:var(--mist);font-size:12px;">02</div>
-        <div><div style="font-size:14px;">伊藤 健一</div><div style="font-size:11px;color:var(--mist);">伊藤形成外科・大阪</div></div>
-        <div><span class="rc-tag">スレッドリフト</span></div>
-        <div style="font-size:12px;color:var(--mist);">2025.06.18</div>
-        <div><span class="status-badge status-confirmed">認証済</span></div>
-      </div>
-      <div class="member-row">
-        <div style="color:var(--mist);font-size:12px;">03</div>
-        <div><div style="font-size:14px;">山本 遼</div><div style="font-size:11px;color:var(--mist);">山本スキンクリニック・名古屋</div></div>
-        <div><span class="rc-tag">ボトックス</span></div>
-        <div style="font-size:12px;color:var(--mist);">2025.07.01</div>
-        <div><span class="status-badge status-pending">審査中</span></div>
-      </div>
-    </div>
-
-  </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════ MODALS ════════════════════════════════════ -->
-
-<!-- REGISTER MODAL -->
-<div id="modal-register" class="modal-overlay" onclick="closeModalOutside(event,'modal-register')">
-  <div class="modal-box">
-    <div class="modal-header">
-      <div>
-        <div class="modal-title">会員<em>登録</em></div>
-        <div class="modal-subtitle">VANDS & LIAS Medical Academy への医師会員登録フォームです。<br>登録後、施術リクエストや開催情報の受信が可能になります。</div>
-      </div>
-      <button class="modal-close" onclick="closeModal('modal-register')">×</button>
-    </div>
-    <div class="modal-body" id="register-body">
-      <div class="form-grid">
-        <div class="form-group">
-          <label class="form-label">氏名（姓）<span>*</span></label>
-          <input type="text" class="form-input" placeholder="山田">
-        </div>
-        <div class="form-group">
-          <label class="form-label">氏名（名）<span>*</span></label>
-          <input type="text" class="form-input" placeholder="太郎">
-        </div>
-        <div class="form-group full">
-          <label class="form-label">クリニック名 / 所属機関<span>*</span></label>
-          <input type="text" class="form-input" placeholder="○○美容クリニック">
-        </div>
-        <div class="form-group">
-          <label class="form-label">都道府県<span>*</span></label>
-          <select class="form-select">
-            <option value="">選択してください</option>
-            <option>北海道</option><option>東京都</option><option>大阪府</option>
-            <option>神奈川県</option><option>愛知県</option><option>福岡県</option>
-            <option>その他</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">専門領域</label>
-          <select class="form-select">
-            <option>美容外科・形成外科</option>
-            <option>美容皮膚科</option>
-            <option>一般内科（美容医療参入）</option>
-            <option>その他</option>
-          </select>
-        </div>
-        <div class="form-group full">
-          <label class="form-label">メールアドレス<span>*</span></label>
-          <input type="email" class="form-input" placeholder="doctor@clinic.jp">
-        </div>
-        <div class="form-group">
-          <label class="form-label">パスワード<span>*</span></label>
-          <input type="password" class="form-input" placeholder="••••••••">
-        </div>
-        <div class="form-group">
-          <label class="form-label">パスワード（確認）<span>*</span></label>
-          <input type="password" class="form-input" placeholder="••••••••">
-        </div>
-        <div class="form-group full">
-          <label class="form-label">特に学びたい施術（複数選択可）</label>
-          <div class="treatment-checks" id="reg-checks">
-            <div class="check-item" onclick="toggleCheck(this)"><div class="chk">✓</div>鼻ヒアルロン酸注入</div>
-            <div class="check-item" onclick="toggleCheck(this)"><div class="chk">✓</div>ほうれい線ヒアルロン酸</div>
-            <div class="check-item" onclick="toggleCheck(this)"><div class="chk">✓</div>ボトックス ネックリフト</div>
-            <div class="check-item" onclick="toggleCheck(this)"><div class="chk">✓</div>顔面輪郭・エラ・顎</div>
-            <div class="check-item" onclick="toggleCheck(this)"><div class="chk">✓</div>スレッドリフト（糸リフト）</div>
-            <div class="check-item" onclick="toggleCheck(this)"><div class="chk">✓</div>スキン・その他</div>
-          </div>
-        </div>
-        <div class="form-group full">
-          <label class="form-label">メッセージ（任意）</label>
-          <textarea class="form-textarea" placeholder="ご質問・ご要望など自由にお書きください。"></textarea>
-        </div>
-      </div>
-      <button class="form-submit" onclick="submitRegister()">会員登録を完了する</button>
-    </div>
-  </div>
-</div>
-
-<!-- REQUEST MODAL -->
-<div id="modal-request" class="modal-overlay" onclick="closeModalOutside(event,'modal-request')">
-  <div class="modal-box">
-    <div class="modal-header">
-      <div>
-        <div class="modal-title">施術<em>リクエスト</em></div>
-        <div class="modal-subtitle">学びたい施術をリクエストしてください。<br>リクエストが集まり次第、ワークショップとして開催いたします。</div>
-      </div>
-      <button class="modal-close" onclick="closeModal('modal-request')">×</button>
-    </div>
-    <div class="modal-body" id="request-body">
-      <div class="form-grid">
-        <div class="form-group full">
-          <label class="form-label">希望施術カテゴリ<span>*</span>（複数選択可）</label>
-          <div class="treatment-checks" id="req-checks">
-            <div class="check-item" onclick="toggleCheck(this)"><div class="chk">✓</div>鼻ヒアルロン酸注入</div>
-            <div class="check-item" onclick="toggleCheck(this)"><div class="chk">✓</div>ほうれい線ヒアルロン酸</div>
-            <div class="check-item" onclick="toggleCheck(this)"><div class="chk">✓</div>ボトックス ネックリフト</div>
-            <div class="check-item" onclick="toggleCheck(this)"><div class="chk">✓</div>顔面輪郭・エラ・顎</div>
-            <div class="check-item" onclick="toggleCheck(this)"><div class="chk">✓</div>スレッドリフト（糸リフト）</div>
-            <div class="check-item" onclick="toggleCheck(this)"><div class="chk">✓</div>スキン系施術</div>
-            <div class="check-item" onclick="toggleCheck(this)"><div class="chk">✓</div>唇・口元フィラー</div>
-            <div class="check-item" onclick="toggleCheck(this)"><div class="chk">✓</div>その他（下記に記載）</div>
-          </div>
-        </div>
-
-        <div class="form-divider">詳細・ご要望</div>
-
-        <div class="form-group full">
-          <label class="form-label">リクエスト内容の詳細<span>*</span></label>
-          <textarea class="form-textarea" placeholder="例：韓国式の鼻ヒアルロン酸注入で、特にベクター注入法と製剤選択の判断基準を詳しく学びたいです。" style="min-height:120px;"></textarea>
-        </div>
-        <div class="form-group">
-          <label class="form-label">ご希望の形式</label>
-          <select class="form-select">
-            <option>少人数（〜6名）現地研修</option>
-            <option>グループ（〜12名）現地研修</option>
-            <option>オンライン講義（理論）</option>
-            <option>ハイブリッド（オンライン＋現地）</option>
-            <option>どちらでも可</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">ご希望の時期</label>
-          <select class="form-select">
-            <option>できるだけ早く</option>
-            <option>1〜2ヶ月以内</option>
-            <option>3〜6ヶ月以内</option>
-            <option>半年以降</option>
-            <option>未定</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">ご希望の曜日</label>
-          <select class="form-select">
-            <option>平日</option>
-            <option>土曜日</option>
-            <option>日曜日</option>
-            <option>どちらでも可</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">優先度</label>
-          <select class="form-select">
-            <option>高（なるべく早く開催してほしい）</option>
-            <option>中（通常）</option>
-            <option>低（時期は問わない）</option>
-          </select>
-        </div>
-        <div class="form-divider">通訳・言語サポート</div>
-
-        <div class="form-group full">
-          <label class="form-label">通訳サポートの希望<span>*</span></label>
-          <div class="treatment-checks" id="interp-checks" style="grid-template-columns:1fr 1fr 1fr;">
-            <div class="check-item" onclick="selectInterp(this,'required')"><div class="chk">✓</div>通訳を希望する<br><span style="font-size:10px;color:var(--mist);margin-top:2px;display:block;">（日本語通訳付き）</span></div>
-            <div class="check-item" onclick="selectInterp(this,'not-required')"><div class="chk">✓</div>通訳は不要<br><span style="font-size:10px;color:var(--mist);margin-top:2px;display:block;">（韓国語・英語対応可）</span></div>
-            <div class="check-item" onclick="selectInterp(this,'either')"><div class="chk">✓</div>どちらでも可<br><span style="font-size:10px;color:var(--mist);margin-top:2px;display:block;"></span></div>
-          </div>
-        </div>
-
-        <div class="form-group full">
-          <label class="form-label">その他・補足</label>
-          <textarea class="form-textarea" placeholder="カリキュラムへのご要望、質問、アレルギーや配慮事項など"></textarea>
-        </div>
-      </div>
-      <button class="form-submit" onclick="submitRequest()">リクエストを送信する</button>
-    </div>
-  </div>
-</div>
-
-<!-- LOGIN MODAL -->
-<div id="modal-login" class="modal-overlay" onclick="closeModalOutside(event,'modal-login')">
-  <div class="modal-box" style="max-width:440px;">
-    <div class="modal-header">
-      <div>
-        <div class="modal-title">ログ<em>イン</em></div>
-        <div class="modal-subtitle">会員の方はこちらからログインください。</div>
-      </div>
-      <button class="modal-close" onclick="closeModal('modal-login')">×</button>
-    </div>
-    <div class="modal-body">
-      <div class="form-grid">
-        <div class="form-group full">
-          <label class="form-label">メールアドレス</label>
-          <input type="email" class="form-input" placeholder="doctor@clinic.jp">
-        </div>
-        <div class="form-group full">
-          <label class="form-label">パスワード</label>
-          <input type="password" class="form-input" placeholder="••••••••">
-        </div>
-      </div>
-      <button class="form-submit" style="margin-top:16px;" onclick="closeModal('modal-login');showPage('dashboard')">ログイン</button>
-      <p style="text-align:center;margin-top:16px;font-size:12px;color:var(--mist);">
-        会員登録がまだの方は <a href="#" onclick="closeModal('modal-login');openModal('register')" style="color:var(--gold);">こちら</a>
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-label">Vands Japan Partnership Program</div>
+      <h1 class="hero-title">日本の医師と<br>ベンスクリニックの架け橋となる</h1>
+      <p class="hero-sub">
+        私たちが目指すのは、日本の医師の皆様とベンスクリニックの架け橋となり、<br>
+        最先端の美容技術を共有することです。
       </p>
     </div>
+
+    <!-- 01. PROGRAM OVERVIEW -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-number">01 / Program</div>
+        <h2 class="section-title">プログラムの概要</h2>
+      </div>
+      <div class="section-body">
+        <p>
+          ベンスクリニックの現地での研修コースを通じて、<br>
+          日本の先生方は<strong>世界レベルの施術技術や知識を直接学べます。</strong>
+        </p>
+        <p>
+          机上の理論や製品説明にとどまらず、韓国の最前線で実際に行われている手技を、
+          ベンスのドクター陣から直接伝授されるプログラムです。
+        </p>
+      </div>
+    </section>
+
+    <!-- 02. MUTUAL BENEFIT -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-number">02 / Mutual Benefit</div>
+        <h2 class="section-title">相互のメリット</h2>
+      </div>
+      <div class="section-body">
+        <p>このプログラムは、医師の皆様とベンスクリニック、双方にとって価値のある関係を築きます。</p>
+      </div>
+      <div class="two-col">
+        <div class="benefit-card doctors">
+          <div class="benefit-label">For Doctors</div>
+          <div class="benefit-title">先生方のスキル向上</div>
+          <div class="benefit-desc">
+            韓国最前線の手技・プロトコルを直接学ぶことで、
+            自院の技術水準を飛躍的に引き上げることができます。
+          </div>
+        </div>
+        <div class="benefit-card vands">
+          <div class="benefit-label">For Vands</div>
+          <div class="benefit-title">日本の医師との信頼構築と<br>将来の採用可能性</div>
+          <div class="benefit-desc">
+            研修を通じた信頼関係が、日本展開における人材ネットワークとなり、
+            将来のクリニック開設・医師採用につながります。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03. APPROACH -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-number">03 / Approach</div>
+        <h2 class="section-title">私たちの提供するもの</h2>
+      </div>
+      <div class="section-body">
+        <p>
+          このプログラムは、<strong>2つのアプローチ</strong>で幅広い医師の皆様にお応えします。
+          Vandsが確立した高い技術をそのまま学びたい方、自分のニーズに合わせて深めたい方、
+          どちらにも最適な学びをご用意しています。
+        </p>
+      </div>
+
+      <div class="approach-grid">
+        <!-- Type A: Vandsの体系的カリキュラム -->
+        <div class="approach-card type-a">
+          <div class="approach-num">01</div>
+          <div class="approach-tag">Vands Curriculum</div>
+          <div class="approach-title">Vandsが確立した<br>高い技術を学ぶ</div>
+          <div class="approach-for">
+            <strong>こんな先生方に：</strong>これから美容医療に参入したい方、技術力に不安のある新参者、基礎から体系的に学び直したい方
+          </div>
+          <div class="approach-desc">
+            Vandsクリニックが長年の臨床で磨き上げた、
+            確立された手技とプロトコルをそのまま提供します。
+            何から学べばいいか分からない方でも、
+            標準カリキュラムに沿って安心して技術を習得できます。
+          </div>
+          <div class="approach-examples">
+            <div class="approach-examples-label">Core Skills</div>
+            <div class="approach-tags">
+              <span class="approach-pill">ヒアルロン酸（HA）</span>
+              <span class="approach-pill">ボトックス（BTX）</span>
+              <span class="approach-pill">脂肪溶解注射</span>
+              <span class="approach-pill">スキンブースター</span>
+              <span class="approach-pill">スレッドリフト</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Type B: カスタマイズ -->
+        <div class="approach-card type-b">
+          <div class="approach-num">02</div>
+          <div class="approach-tag">Customized Program</div>
+          <div class="approach-title">先生方のニーズに<br>合わせてカスタマイズ</div>
+          <div class="approach-for">
+            <strong>こんな先生方に：</strong>すでに施術経験があり特定の技術を深めたい方、自院の症例に特化して学びたい方、上位手技に挑戦したい経験者
+          </div>
+          <div class="approach-desc">
+            画一的な研修ではなく、先生方の経験値・目標・自院の課題に
+            合わせて、研修内容をオーダーメイドで設計します。
+            個別の相談から始めて、一人ひとりに最適な学びを提供します。
+          </div>
+          <div class="approach-examples">
+            <div class="approach-examples-label">Customizable</div>
+            <div class="approach-tags">
+              <span class="approach-pill">特定部位の深堀り</span>
+              <span class="approach-pill">症例別プロトコル</span>
+              <span class="approach-pill">個別指導（1対1）</span>
+              <span class="approach-pill">Vandsオリジナル施術</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="steps-heading">共通の進め方</div>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-marker">1</div>
+          <div class="step-title">ニーズをお聞きする</div>
+          <div class="step-desc">
+            どの施術を学びたいのか、現時点での経験値、自院での課題などを丁寧にヒアリング。
+            ご希望のアプローチ（標準カリキュラム／カスタマイズ）もこの段階で確認します。
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-marker">2</div>
+          <div class="step-title">最適な研修コースをご提案</div>
+          <div class="step-desc">
+            先生方の目的に応じて、Vandsの標準カリキュラム、
+            または個別カスタマイズプログラムをご提案します。
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-marker">3</div>
+          <div class="step-title">研修の実施とフォローアップ</div>
+          <div class="step-desc">
+            ベンスクリニック現地で実践的に習得。研修後も継続的な関係を築いていきます。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04. LONG-TERM VISION -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-number">04 / Long-term Vision</div>
+        <h2 class="section-title">長期的展望</h2>
+      </div>
+      <div class="section-body">
+        <p>
+          この関係は、一度の研修で終わるものではありません。
+        </p>
+        <p>
+          研修を通じて築かれた信頼が、<strong>ベンスクリニックの日本展開を加速</strong>させ、
+          医師の皆様にとっては自院の成長機会となります。
+        </p>
+        <p>
+          韓国と日本、それぞれの美容医療の強みを持ち寄りながら、
+          長期的に<strong>お互いの成長につながる関係</strong>を育てていきます。
+        </p>
+      </div>
+
+      <!-- Closing message -->
+      <div class="closing">
+        <div class="closing-label">Our Commitment</div>
+        <div class="closing-text">
+          ともに、日本の美容医療の<br>
+          新しい標準をつくる。
+        </div>
+        <div class="closing-cta">
+          <a href="academy.html" class="cta-button">
+            アカデミーの具体的な内容を見る
+            <span class="cta-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-brand">Vands Clinic × LIAS</div>
+    <div>2026 Partnership Program</div>
   </div>
 </div>
 
-<!-- TOAST -->
-<div id="toast" style="
-  position:fixed;bottom:32px;left:50%;transform:translateX(-50%);
-  background:var(--mid);border:1px solid var(--gold);
-  padding:16px 32px;font-size:13px;font-weight:300;
-  letter-spacing:0.05em;color:var(--cream);
-  opacity:0;transition:opacity 0.4s;pointer-events:none;
-  z-index:2000;white-space:nowrap;
-"></div>
 
+<!-- ================ KOREAN VERSION ================ -->
+<div data-lang-only="ko">
+  <div class="container">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-label">Vands Japan Partnership Program</div>
+      <h1 class="hero-title">일본 의사와<br>Vands Clinic의 가교가 되다</h1>
+      <p class="hero-sub">
+        저희가 지향하는 것은, 일본 의사 선생님들과 Vands Clinic의 가교가 되어,<br>
+        최첨단 미용 기술을 공유하는 것입니다.
+      </p>
+    </div>
+
+    <!-- 01. PROGRAM OVERVIEW -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-number">01 / Program</div>
+        <h2 class="section-title">프로그램 개요</h2>
+      </div>
+      <div class="section-body">
+        <p>
+          Vands Clinic 현지 연수 코스를 통해,<br>
+          일본 선생님들은 <strong>세계 수준의 시술 기술과 지식을 직접 배울 수 있습니다.</strong>
+        </p>
+        <p>
+          탁상공론이나 제품 설명에 그치지 않고, 한국 최전선에서 실제로 행해지고 있는 시술 기법을,
+          Vands 닥터진에게 직접 전수받는 프로그램입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- 02. MUTUAL BENEFIT -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-number">02 / Mutual Benefit</div>
+        <h2 class="section-title">상호 이점</h2>
+      </div>
+      <div class="section-body">
+        <p>이 프로그램은 의사 선생님들과 Vands Clinic, 양측 모두에게 가치 있는 관계를 구축합니다.</p>
+      </div>
+      <div class="two-col">
+        <div class="benefit-card doctors">
+          <div class="benefit-label">For Doctors</div>
+          <div class="benefit-title">선생님들의 스킬 향상</div>
+          <div class="benefit-desc">
+            한국 최전선의 시술 기법과 프로토콜을 직접 배움으로써,
+            자원(自院)의 기술 수준을 비약적으로 끌어올릴 수 있습니다.
+          </div>
+        </div>
+        <div class="benefit-card vands">
+          <div class="benefit-label">For Vands</div>
+          <div class="benefit-title">일본 의사와의 신뢰 구축과<br>향후 채용 가능성</div>
+          <div class="benefit-desc">
+            연수를 통한 신뢰 관계가 일본 진출에서의 인재 네트워크가 되어,
+            향후 클리닉 개설·의사 채용으로 이어집니다.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03. APPROACH -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-number">03 / Approach</div>
+        <h2 class="section-title">저희가 제공하는 것</h2>
+      </div>
+      <div class="section-body">
+        <p>
+          이 프로그램은 <strong>두 가지 접근 방식</strong>으로 폭넓은 의사 선생님들의 니즈에 부응합니다.
+          Vands가 확립한 높은 기술을 그대로 배우고 싶으신 분, 자신의 니즈에 맞춰 심화하고 싶으신 분,
+          어느 쪽에도 최적의 배움을 준비해 두고 있습니다.
+        </p>
+      </div>
+
+      <div class="approach-grid">
+        <!-- Type A: Vands 커리큘럼 -->
+        <div class="approach-card type-a">
+          <div class="approach-num">01</div>
+          <div class="approach-tag">Vands Curriculum</div>
+          <div class="approach-title">Vands가 확립한<br>높은 기술을 배운다</div>
+          <div class="approach-for">
+            <strong>이런 선생님께：</strong>앞으로 미용 의료에 진입하고 싶으신 분, 기술력에 불안을 느끼시는 신규 진입자, 기초부터 체계적으로 다시 배우고 싶으신 분
+          </div>
+          <div class="approach-desc">
+            Vands Clinic이 오랜 임상을 통해 갈고닦은,
+            확립된 시술 기법과 프로토콜을 그대로 제공합니다.
+            무엇부터 배워야 할지 모르시는 분이라도
+            표준 커리큘럼에 따라 안심하고 기술을 습득할 수 있습니다.
+          </div>
+          <div class="approach-examples">
+            <div class="approach-examples-label">Core Skills</div>
+            <div class="approach-tags">
+              <span class="approach-pill">히알루론산 (HA)</span>
+              <span class="approach-pill">보툴리눔 톡신 (BTX)</span>
+              <span class="approach-pill">지방 용해 주사</span>
+              <span class="approach-pill">스킨부스터</span>
+              <span class="approach-pill">실 리프팅</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Type B: 커스터마이즈 -->
+        <div class="approach-card type-b">
+          <div class="approach-num">02</div>
+          <div class="approach-tag">Customized Program</div>
+          <div class="approach-title">선생님의 니즈에<br>맞춰 커스터마이즈</div>
+          <div class="approach-for">
+            <strong>이런 선생님께：</strong>이미 시술 경험이 있고 특정 기술을 심화하고 싶으신 분, 자원(自院)의 증례에 특화하여 배우고 싶으신 분, 상위 시술에 도전하고 싶으신 경험자
+          </div>
+          <div class="approach-desc">
+            획일적인 연수가 아닌, 선생님의 경험치·목표·자원의 과제에
+            맞춰 연수 내용을 오더메이드로 설계합니다.
+            개별 상담에서 시작하여, 한 분 한 분에게 최적의 배움을 제공합니다.
+          </div>
+          <div class="approach-examples">
+            <div class="approach-examples-label">Customizable</div>
+            <div class="approach-tags">
+              <span class="approach-pill">특정 부위 심화</span>
+              <span class="approach-pill">증례별 프로토콜</span>
+              <span class="approach-pill">1:1 개별 지도</span>
+              <span class="approach-pill">Vands 오리지널 시술</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="steps-heading">공통 진행 방식</div>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-marker">1</div>
+          <div class="step-title">니즈를 듣습니다</div>
+          <div class="step-desc">
+            어떤 시술을 배우고 싶은지, 현 시점의 경험치, 자원에서의 과제 등을 꼼꼼히 청취합니다.
+            희망하시는 접근 방식(표준 커리큘럼 / 커스터마이즈)도 이 단계에서 확인합니다.
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-marker">2</div>
+          <div class="step-title">최적의 연수 코스를 제안</div>
+          <div class="step-desc">
+            선생님의 목적에 따라, Vands의 표준 커리큘럼 또는
+            개별 커스터마이즈 프로그램을 제안해 드립니다.
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-marker">3</div>
+          <div class="step-title">연수 실시와 사후 관리</div>
+          <div class="step-desc">
+            Vands Clinic 현지에서 실전적으로 습득. 연수 후에도 지속적인 관계를 구축해 나갑니다.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04. LONG-TERM VISION -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-number">04 / Long-term Vision</div>
+        <h2 class="section-title">장기적 전망</h2>
+      </div>
+      <div class="section-body">
+        <p>
+          이 관계는 한 번의 연수로 끝나는 것이 아닙니다.
+        </p>
+        <p>
+          연수를 통해 구축된 신뢰가 <strong>Vands Clinic의 일본 진출을 가속화</strong>시키고,
+          의사 선생님들에게는 자원 성장의 기회가 됩니다.
+        </p>
+        <p>
+          한국과 일본, 각각의 미용 의료의 강점을 한데 모아,
+          장기적으로 <strong>서로의 성장으로 이어지는 관계</strong>를 키워 나갑니다.
+        </p>
+      </div>
+
+      <!-- Closing message -->
+      <div class="closing">
+        <div class="closing-label">Our Commitment</div>
+        <div class="closing-text">
+          함께, 일본 미용 의료의<br>
+          새로운 표준을 만든다.
+        </div>
+        <div class="closing-cta">
+          <a href="academy.html" class="cta-button">
+            아카데미의 구체적인 내용 보기
+            <span class="cta-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-brand">Vands Clinic × LIAS</div>
+    <div>2026 Partnership Program</div>
+  </div>
+</div>
+
+
+<!-- ================ SCRIPT ================ -->
 <script>
-  // ─── PAGE NAV ───
-  function showPage(id) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    const el = document.getElementById(id);
-    if (el) el.classList.add('active');
-    window.scrollTo(0,0);
+  const STORAGE_KEY = 'vands_lias_lang';
+  const buttons = document.querySelectorAll('.lang-btn');
+  const html = document.documentElement;
+
+  function setLang(lang) {
+    html.setAttribute('data-lang', lang);
+    html.setAttribute('lang', lang);
+    document.title = lang === 'ko' ? 'Vands × LIAS' : 'Vands × LIAS';
+    buttons.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    try { localStorage.setItem(STORAGE_KEY, lang); } catch(e){}
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  function scrollToSection(id) {
-    setTimeout(() => {
-      const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
-  }
+  buttons.forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
 
-  // ─── MODALS ───
-  function openModal(name) {
-    document.getElementById('modal-' + name).classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeModal(id) {
-    document.getElementById(id).classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function closeModalOutside(e, id) {
-    if (e.target.id === id) closeModal(id);
-  }
-
-  // ─── CHECKBOXES ───
-  function toggleCheck(el) {
-    el.classList.toggle('selected');
-  }
-
-  // ─── INTERPRETER (single select) ───
-  function selectInterp(el) {
-    document.querySelectorAll('#interp-checks .check-item').forEach(i => i.classList.remove('selected'));
-    el.classList.add('selected');
-  }
-  // ─── TABS ───
-  function switchDashTab(tabId, btn) {
-    document.querySelectorAll('.dash-tab').forEach(t => t.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('#tab-member, #tab-admin').forEach(p => p.classList.remove('active'));
-    document.getElementById('tab-' + tabId).classList.add('active');
-  }
-
-  function switchInnerTab(panelId, group, btn) {
-    btn.parentElement.querySelectorAll('.dash-tab').forEach(t => t.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('#my-requests, #upcoming-ws').forEach(p => p.classList.remove('active'));
-    document.getElementById(panelId).classList.add('active');
-  }
-
-  // ─── FORM SUBMISSIONS ───
-  function submitRegister() {
-    document.getElementById('register-body').innerHTML = `
-      <div class="success-panel">
-        <div class="success-icon">✓</div>
-        <div class="success-title">登録完了</div>
-        <p class="success-msg">
-          会員登録のご申請ありがとうございます。<br>
-          Vandsクリニックの担当者が確認後、<br>
-          ご登録のメールアドレスに認証メールをお送りします。<br><br>
-          <em style="color:var(--gold);">通常3営業日以内にご連絡いたします。</em>
-        </p>
-      </div>`;
-  }
-
-  function submitRequest() {
-    document.getElementById('request-body').innerHTML = `
-      <div class="success-panel">
-        <div class="success-icon">✓</div>
-        <div class="success-title">リクエスト受信</div>
-        <p class="success-msg">
-          施術リクエストを受け付けました。<br>
-          同様のリクエストが一定数に達した場合、<br>
-          ワークショップとして開催のご連絡をお送りします。<br><br>
-          <em style="color:var(--gold);">リクエストの状況はマイページで確認できます。</em>
-        </p>
-      </div>`;
-  }
-
-  // ─── TOAST ───
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.style.opacity = '1';
-    setTimeout(() => { t.style.opacity = '0'; }, 3500);
-  }
+  // Restore last selected language
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved === 'ja' || saved === 'ko') setLang(saved);
+  } catch(e){}
 </script>
 </body>
 </html>
